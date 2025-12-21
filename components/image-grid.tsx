@@ -1,5 +1,7 @@
 "use client";
 
+// set custom screen break
+
 import type { TImage } from "@/types/types";
 import { ImageCard } from "./image-card";
 
@@ -11,17 +13,16 @@ export function ImageGrid({ images }: { images: TImage[] }) {
   return (
     <div
       className="
+      bg-brand-black
         grid
         gap-4
         sm:gap-5
         md:gap-6
         grid-cols-1
-        sm:grid-cols-1
-        md:grid-cols-2
-        lg:grid-cols-3
-        max-w-7xl
-        flex-1 ml-72
-        p-2
+        sm:grid-cols-2
+        md:grid-cols-3
+        lg:grid-cols-4
+        p-4
       "
     >
       {images.map((image) => (

@@ -73,7 +73,7 @@ export const mockImages: TImage[] = [
     id: "img_005",
     userId: "user_m3n4o5p6",
     title: "Close-up of a Flower Petal",
-    imageKey: "eye-for-ebony-KgsXAHYWcU8-unsplash.jpg",
+    imageKey: "images/97a371c3-2ee1-4dc8-b025-400366809107",
     // Placeholder for a 800x1200 macro image (Tall Portrait)
     thumbnailUrl: "https://picsum.photos/id/219/80/120",
     fileType: "image/jpeg",
@@ -90,7 +90,7 @@ export const mockImages: TImage[] = [
     id: "img_006",
     userId: "user_m3n4o5p6",
     title: "Close-up of a Flower Petal",
-    imageKey: "jurien-huggins-jLWlA1HQMbE-unsplash.jpg",
+    imageKey: "images/97a371c3-2ee1-4dc8-b025-400366809107",
     // Placeholder for a 800x1200 macro image (Tall Portrait)
     thumbnailUrl: "https://picsum.photos/id/219/80/120",
     fileType: "image/jpeg",
@@ -107,7 +107,7 @@ export const mockImages: TImage[] = [
     id: "img_007",
     userId: "user_m3n4o5p6",
     title: "Close-up of a Flower Petal",
-    imageKey: "land-o-lakes-inc-vBUGdI7JAvc-unsplash.jpg",
+    imageKey: "images/97a371c3-2ee1-4dc8-b025-400366809107",
     // Placeholder for a 800x1200 macro image (Tall Portrait)
     thumbnailUrl: "https://picsum.photos/id/219/80/120",
     fileType: "image/jpeg",
@@ -124,7 +124,7 @@ export const mockImages: TImage[] = [
     id: "img_008",
     userId: "user_m3n4o5p6",
     title: "Close-up of a Flower Petal",
-    imageKey: "land-o-lakes-inc-vBUGdI7JAvc-unsplash.jpg",
+    imageKey: "images/97a371c3-2ee1-4dc8-b025-400366809107",
     // Placeholder for a 800x1200 macro image (Tall Portrait)
     thumbnailUrl: "https://picsum.photos/id/219/80/120",
     fileType: "image/jpeg",
@@ -141,7 +141,7 @@ export const mockImages: TImage[] = [
     id: "img_009",
     userId: "user_m3n4o5p6",
     title: "Close-up of a Flower Petal",
-    imageKey: "land-o-lakes-inc-vBUGdI7JAvc-unsplash.jpg",
+    imageKey: "images/97a371c3-2ee1-4dc8-b025-400366809107",
     // Placeholder for a 800x1200 macro image (Tall Portrait)
     thumbnailUrl: "https://picsum.photos/id/219/80/120",
     fileType: "image/jpeg",
@@ -158,7 +158,7 @@ export const mockImages: TImage[] = [
     id: "img_010",
     userId: "user_m3n4o5p6",
     title: "Close-up of a Flower Petal",
-    imageKey: "marius-muresan-w8LvNqKKsCo-unsplash.jpg",
+    imageKey: "images/97a371c3-2ee1-4dc8-b025-400366809107",
     // Placeholder for a 800x1200 macro image (Tall Portrait)
     thumbnailUrl: "https://picsum.photos/id/219/80/120",
     fileType: "image/jpeg",
@@ -172,3 +172,4 @@ export const mockImages: TImage[] = [
     updatedAt: "2023-12-05T12:00:00Z",
   },
 ];
+

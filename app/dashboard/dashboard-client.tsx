@@ -35,26 +35,15 @@ export default function Dashboard() {
     loadProfile();
   }, []);
   return (
-    <div className="min-h-screen bg-brand-black">
-      <Sidebar
-        username={profile?.username || "User"}
-        imageCount={profile?.image_count || 0}
-        imageLimit={profile?.image_limit || 1000}
-        planType={profile?.plan_type || "standard"}
-        selectedCategory={selectedCategory}
-        selectedOrientation={selectedOrientation}
-      />
-      <div>
-        <div className="ml-72 pt-[80px] flex justify-between items-center">
-          <SearchBar />
-          <Button
-          className="text-brand-white border border-brand-orange/30">
-            Recent
-            <ChevronDown className="text-brand-white"/>
-          </Button>
-        </div>
-        <ImageGrid images={mockImages} />
+    <div>
+      <div className="flex justify-between items-center">
+        <SearchBar />
+        <Button className="text-brand-white border border-brand-orange/30">
+          Recent
+          <ChevronDown className="text-brand-white" />
+        </Button>
       </div>
+      <ImageGrid images={mockImages} />
     </div>
   );
 }
