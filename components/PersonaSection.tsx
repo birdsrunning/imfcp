@@ -13,6 +13,7 @@ export default function PersonaSection() {
         </p>
       </div>
 
+      {/* cards */}
       <div></div>
     </section>
   );
