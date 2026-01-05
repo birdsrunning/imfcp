@@ -1,20 +1,31 @@
+// components/app-sidebar.tsx
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
-  SidebarHeader,
-} from "@/components/ui/sidebar"
+  SidebarGroupLabel,
+  SidebarGroupContent,
+} from "@/components/ui/sidebar";
+import CategoryFilter from "./layouts/category-filter";
+import OrientationFilter from "./layouts/orientation-filter";
 
 export function AppSidebar() {
   return (
     <Sidebar>
-      <SidebarHeader />
       <SidebarContent>
-        <SidebarGroup />
-        <SidebarGroup />
+        <SidebarGroup>
+          <SidebarGroupLabel>Categories</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <CategoryFilter />
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>Orientation</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <OrientationFilter />
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter />
     </Sidebar>
-  )
+  );
 }

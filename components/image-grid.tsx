@@ -2,14 +2,14 @@
 
 // set custom screen break
 
-import type { TImage } from "@/types/types";
+import type { ImageType } from "@/types/types";
 import { ImageCard } from "./image-card";
 
 // to install onDelete, onEdit and onDownload functionalities
 // to style properly
 // to add new
 
-export function ImageGrid({ images }: { images: TImage[] }) {
+export function ImageGrid({ images }: { images: ImageType[] }) {
   return (
     <div
       className="

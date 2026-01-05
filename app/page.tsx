@@ -1,10 +1,14 @@
-"use client";
-import SearchBar from "@/components/SearchBar";
-
+import Navbar from "@/components/layouts/Navbar";
+import Hero from "@/components/Hero";
+import FeatureMarquee from "@/components/layouts/MarqueeSection";
+import PersonaSection from "@/components/PersonaSection";
 export default function Page() {
   return (
-    <div className="min-h-screen bg-brand-black text-brand-white flex justify-center items-center">
-      <SearchBar />
+    <div className="min-h-screen relative pt-16">
+      <Navbar />
+      <Hero />
+      <FeatureMarquee />
+      <PersonaSection />
     </div>
   );
 }

@@ -2,20 +2,19 @@
 const nextConfig = {
   experimental: {
     serverActions: {
-      bodySizeLimit: '10mb',
+      bodySizeLimit: "10mb",
     },
   },
 
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname:
-          'imfcp.334b07c6dcfac53d8aadd983cccb1751.r2.cloudflarestorage.com',
-        pathname: '/images/**',
+        protocol: "https",
+        hostname: "pub-76fd30e12c99460d82238325fcb2cfc0.r2.dev",
+        pathname: "/**",
       },
     ],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

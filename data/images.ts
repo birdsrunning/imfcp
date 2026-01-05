@@ -1,11 +1,12 @@
 import type { TImage } from "@/types/types";
+import type { ImageType } from "@/types/types";
 
 export const mockImages: TImage[] = [
   {
     id: "img_001",
     userId: "user_a1b2c3d4",
     title: "Abstract Geometric Design",
-    imageKey: "images/0e4d3134-b551-4449-9d5a-7ddcd47637c1",
+    imageKey: "https://pub-76fd30e12c99460d82238325fcb2cfc0.r2.dev/thumbnails/anime_i_cannot_remember_fb2c7b19-230e-4a1b-9943-178adea7695f",
     // Placeholder for a 1200x800 abstract image (High Res)
     thumbnailUrl: "https://picsum.photos/id/160/120/80",
     fileType: "image/jpeg",
@@ -22,7 +23,8 @@ export const mockImages: TImage[] = [
     id: "img_002",
     userId: "user_e5f6g7h8",
     title: "Mountain Sunset View",
-    imageKey: "images/5f17d0ba-fb6d-49e1-bea5-41b373b6f8b7",
+    imageKey:
+      "https://pub-76fd30e12c99460d82238325fcb2cfc0.r2.dev/thumbnails/anime_i_cannot_remember_fb2c7b19-230e-4a1b-9943-178adea7695f",
     // Placeholder for a 900x1200 nature image (Portrait)
     thumbnailUrl: "https://picsum.photos/id/1018/90/120",
     fileType: "image/png",
@@ -39,7 +41,8 @@ export const mockImages: TImage[] = [
     id: "img_003",
     userId: "user_a1b2c3d4",
     title: "City Skyline at Night",
-    imageKey: "images/74249eab-bc23-4c9f-bc95-7539f7d45dbf",
+    imageKey:
+      "https://pub-76fd30e12c99460d82238325fcb2cfc0.r2.dev/thumbnails/anime_i_cannot_remember_fb2c7b19-230e-4a1b-9943-178adea7695f",
     // Placeholder for a 1600x900 cityscape image (Wide Landscape)
     thumbnailUrl: "https://picsum.photos/id/883/160/90",
     fileType: "image/jpeg",
@@ -56,7 +59,8 @@ export const mockImages: TImage[] = [
     id: "img_004",
     userId: "user_i9j0k1l2",
     title: "Minimalist Food Photography",
-    imageKey: "images/97a371c3-2ee1-4dc8-b025-400366809107",
+    imageKey:
+      "https://pub-76fd30e12c99460d82238325fcb2cfc0.r2.dev/thumbnails/anime_i_cannot_remember_fb2c7b19-230e-4a1b-9943-178adea7695f",
     // Placeholder for a 1000x1000 food image (Square)
     thumbnailUrl: "https://picsum.photos/id/560/100/100",
     fileType: "image/webp",
@@ -73,7 +77,8 @@ export const mockImages: TImage[] = [
     id: "img_005",
     userId: "user_m3n4o5p6",
     title: "Close-up of a Flower Petal",
-    imageKey: "images/97a371c3-2ee1-4dc8-b025-400366809107",
+    imageKey:
+      "https://pub-76fd30e12c99460d82238325fcb2cfc0.r2.dev/thumbnails/anime_i_cannot_remember_fb2c7b19-230e-4a1b-9943-178adea7695f",
     // Placeholder for a 800x1200 macro image (Tall Portrait)
     thumbnailUrl: "https://picsum.photos/id/219/80/120",
     fileType: "image/jpeg",
@@ -90,75 +95,8 @@ export const mockImages: TImage[] = [
     id: "img_006",
     userId: "user_m3n4o5p6",
     title: "Close-up of a Flower Petal",
-    imageKey: "images/97a371c3-2ee1-4dc8-b025-400366809107",
-    // Placeholder for a 800x1200 macro image (Tall Portrait)
-    thumbnailUrl: "https://picsum.photos/id/219/80/120",
-    fileType: "image/jpeg",
-    fileSize: 490000,
-    width: 800,
-    height: 1200,
-    category: "Nature",
-    orientation: "Portrait",
-    isNew: false,
-    createdAt: "2023-12-05T12:00:00Z",
-    updatedAt: "2023-12-05T12:00:00Z",
-  },
-  {
-    id: "img_007",
-    userId: "user_m3n4o5p6",
-    title: "Close-up of a Flower Petal",
-    imageKey: "images/97a371c3-2ee1-4dc8-b025-400366809107",
-    // Placeholder for a 800x1200 macro image (Tall Portrait)
-    thumbnailUrl: "https://picsum.photos/id/219/80/120",
-    fileType: "image/jpeg",
-    fileSize: 490000,
-    width: 800,
-    height: 1200,
-    category: "Nature",
-    orientation: "Portrait",
-    isNew: false,
-    createdAt: "2023-12-05T12:00:00Z",
-    updatedAt: "2023-12-05T12:00:00Z",
-  },
-  {
-    id: "img_008",
-    userId: "user_m3n4o5p6",
-    title: "Close-up of a Flower Petal",
-    imageKey: "images/97a371c3-2ee1-4dc8-b025-400366809107",
-    // Placeholder for a 800x1200 macro image (Tall Portrait)
-    thumbnailUrl: "https://picsum.photos/id/219/80/120",
-    fileType: "image/jpeg",
-    fileSize: 490000,
-    width: 800,
-    height: 1200,
-    category: "Nature",
-    orientation: "Portrait",
-    isNew: false,
-    createdAt: "2023-12-05T12:00:00Z",
-    updatedAt: "2023-12-05T12:00:00Z",
-  },
-  {
-    id: "img_009",
-    userId: "user_m3n4o5p6",
-    title: "Close-up of a Flower Petal",
-    imageKey: "images/97a371c3-2ee1-4dc8-b025-400366809107",
-    // Placeholder for a 800x1200 macro image (Tall Portrait)
-    thumbnailUrl: "https://picsum.photos/id/219/80/120",
-    fileType: "image/jpeg",
-    fileSize: 490000,
-    width: 800,
-    height: 1200,
-    category: "Nature",
-    orientation: "Portrait",
-    isNew: false,
-    createdAt: "2023-12-05T12:00:00Z",
-    updatedAt: "2023-12-05T12:00:00Z",
-  },
-  {
-    id: "img_010",
-    userId: "user_m3n4o5p6",
-    title: "Close-up of a Flower Petal",
-    imageKey: "images/97a371c3-2ee1-4dc8-b025-400366809107",
+    imageKey:
+      "https://pub-76fd30e12c99460d82238325fcb2cfc0.r2.dev/thumbnails/anime_i_cannot_remember_fb2c7b19-230e-4a1b-9943-178adea7695f",
     // Placeholder for a 800x1200 macro image (Tall Portrait)
     thumbnailUrl: "https://picsum.photos/id/219/80/120",
     fileType: "image/jpeg",
@@ -173,3 +111,96 @@ export const mockImages: TImage[] = [
   },
 ];
 
+export const dummyImages: ImageType[] = [
+  {
+    id: "img_001",
+    userId: "user_a1b2c3d4",
+    title: "Golden Hour Landscape",
+    categories: ["nature", "landscape"],
+    description:
+      "A serene landscape captured during golden hour with warm tones.",
+    keywords: ["sunset", "nature", "landscape", "golden hour"],
+    thumbnailUrl:
+      "https://pub-76fd30e12c99460d82238325fcb2cfc0.r2.dev/thumbnails/anime_i_cannot_remember_fb2c7b19-230e-4a1b-9943-178adea7695f",
+    imageKey: "images/golden-hour.jpg",
+    isNew: "true",
+    orientation: "landscape",
+    createdAt: "2025-01-10T08:30:00.000Z",
+    updatedAt: "2025-01-10T08:30:00.000Z",
+  },
+  {
+    id: "img_002",
+    userId: "user_e5f6g7h8",
+    title: "Minimal Workspace",
+    categories: ["interior", "lifestyle"],
+    description: "A clean and minimal workspace setup with neutral colors.",
+    keywords: ["workspace", "minimal", "desk", "interior"],
+    thumbnailUrl:
+      "https://pub-76fd30e12c99460d82238325fcb2cfc0.r2.dev/thumbnails/anime_i_cannot_remember_fb2c7b19-230e-4a1b-9943-178adea7695f",
+    imageKey: "images/minimal-workspace.jpg",
+    isNew: "false",
+    orientation: "portrait",
+    createdAt: "2024-12-22T14:15:00.000Z",
+    updatedAt: "2024-12-28T09:45:00.000Z",
+  },
+  {
+    id: "img_003",
+    userId: "user_a1b2c3d4",
+    title: "Street Portrait",
+    categories: ["people", "portrait"],
+    description: "A candid street portrait with dramatic lighting.",
+    keywords: ["portrait", "street", "people", "urban"],
+    thumbnailUrl:
+      "https://pub-76fd30e12c99460d82238325fcb2cfc0.r2.dev/thumbnails/anime_i_cannot_remember_fb2c7b19-230e-4a1b-9943-178adea7695f",
+    imageKey: "images/street-portrait.jpg",
+    isNew: "true",
+    orientation: "landscape",
+    createdAt: "2025-01-18T17:05:00.000Z",
+    updatedAt: "2025-01-18T17:05:00.000Z",
+  },
+  {
+    id: "img_004",
+    userId: "user_i9j0k1l2",
+    title: "Abstract Shapes",
+    categories: ["abstract", "art"],
+    description: "Colorful abstract shapes forming a modern composition.",
+    keywords: ["abstract", "art", "shapes", "color"],
+    thumbnailUrl:
+      "https://pub-76fd30e12c99460d82238325fcb2cfc0.r2.dev/thumbnails/anime_i_cannot_remember_fb2c7b19-230e-4a1b-9943-178adea7695f",
+    imageKey: "images/abstract-shapes.jpg",
+    isNew: "false",
+    orientation: "square",
+    createdAt: "2024-11-05T11:20:00.000Z",
+    updatedAt: "2024-11-20T16:10:00.000Z",
+  },
+  {
+    id: "img_005",
+    userId: "user_m3n4o5p6",
+    title: "City Night Lights",
+    categories: ["city", "night"],
+    description: "A vibrant city skyline illuminated at night.",
+    keywords: ["city", "night", "lights", "urban"],
+    thumbnailUrl:
+      "https://pub-76fd30e12c99460d82238325fcb2cfc0.r2.dev/thumbnails/anime_i_cannot_remember_fb2c7b19-230e-4a1b-9943-178adea7695f",
+    imageKey: "images/city-night.jpg",
+    isNew: "false",
+    orientation: "portrait",
+    createdAt: "2024-10-30T20:45:00.000Z",
+    updatedAt: "2024-11-01T07:30:00.000Z",
+  },
+  {
+    id: "img_006",
+    userId: "user_m3n4o5p6",
+    title: "Forest Pathway",
+    categories: ["nature", "forest"],
+    description: "A quiet pathway leading through a dense green forest.",
+    keywords: ["forest", "nature", "path", "trees"],
+    thumbnailUrl:
+      "https://pub-76fd30e12c99460d82238325fcb2cfc0.r2.dev/thumbnails/anime_i_cannot_remember_fb2c7b19-230e-4a1b-9943-178adea7695f",
+    imageKey: "images/forest-path.jpg",
+    isNew: "true",
+    orientation: "portrait",
+    createdAt: "2025-01-21T06:55:00.000Z",
+    updatedAt: "2025-01-21T06:55:00.000Z",
+  },
+];

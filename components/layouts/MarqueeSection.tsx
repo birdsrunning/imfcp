@@ -1,0 +1,60 @@
+"use client";
+
+import { motion, useMotionValue, useAnimationFrame } from "framer-motion";
+import { useRef, useState } from "react";
+import FeatureCard from "../FeatureCard";
+
+const features = [
+  { icon: "📊", title: "Real-time analytics" },
+  { icon: "⚡", title: "Fast integrations" },
+  { icon: "🔒", title: "Secure by default" },
+  { icon: "📈", title: "Growth insights" },
+  { icon: "🧠", title: "Smart automation" },
+  { icon: "🛠️", title: "Custom workflows" },
+];
+
+export default function FeatureMarquee() {
+  const x = useMotionValue(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [paused, setPaused] = useState(false);
+
+  useAnimationFrame((_, delta) => {
+    if (paused || !containerRef.current) return;
+
+    const speed = 0.03; // px per ms
+    const moveBy = speed * delta;
+
+    const width = containerRef.current.scrollWidth / 2;
+    const currentX = x.get();
+
+    if (currentX <= -width) {
+      x.set(0);
+    } else {
+      x.set(currentX - moveBy);
+    }
+  });
+
+  return (
+    <section className="border-t py-16 overflow-hidden">
+      <p className="text-center text-base text-brand-white/60 mb-6">
+        Everything you need to create beautiful work, faster.
+      </p>
+
+      <div
+        className="relative"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        <motion.div
+          ref={containerRef}
+          className="flex gap-6 w-max"
+          style={{ x }}
+        >
+          {[...features, ...features].map((f, i) => (
+            <FeatureCard key={i} {...f} />
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
