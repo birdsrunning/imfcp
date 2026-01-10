@@ -69,3 +69,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 120% 120%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}

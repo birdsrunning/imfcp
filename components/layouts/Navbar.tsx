@@ -3,60 +3,77 @@ import GetAccess from "../get-access";
 import { navLinks } from "@/data/data";
 import Link from "next/link";
 import { Menu } from "lucide-react";
+import Login from "../Login";
 
 export default function Navbar() {
   return (
-    <nav
-      className="fixed left-0 top-0 w-full pt-6 pb-2 flex justify-center items-center backdrop-blur-md
-  bg-brand-white/10 px-6 z-50 text-brand-white
-"
-    >
-      <div className="hidden h-14 px-4 text-sm md:h-16 md:text-base bg-brand-black rounded-full sm:flex items-center justify-between w-full max-w-3xl">
+    <header className="fixed top-0 left-0 w-full z-50 ">
+      {/* Desktop / Tablet */}
+      <nav
+        className="
+        hidden md:flex items-center justify-between
+        h-16 px-8 lg:px-16
+        backdrop-blur-md bg-brand-black/80
+        text-sm lg:text-base
+      "
+      >
+        {/* Left */}
+        <div className="flex items-center gap-12">
+          <img
+            src="/images/logo/logoOrange.svg"
+            alt="Logo"
+            className="h-12 w-auto"
+          />
+
+          <ul className="flex items-center gap-6 text-white/80">
+            {navLinks.map((navLink, index) => (
+              <li key={index}>
+                <Link
+                  href={navLink.href}
+                  className="transition-colors hover:text-white"
+                >
+                  {navLink.text}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Right */}
+        <div className="flex items-center gap-6">
+          <Login href="/dashboard" />
+          <GetAccess href="/dashboard" />
+        </div>
+      </nav>
+
+      {/* Mobile */}
+      <nav
+        className="
+        md:hidden
+        mx-auto mt-3
+        h-14 max-w-[95%]
+        px-4
+        rounded-full
+        flex items-center justify-between
+        backdrop-blur-md bg-brand-black/80
+      "
+      >
         <img
           src="/images/logo/logoOrange.svg"
           alt="Logo"
-          className="h-10 w-auto"
-        />
-        <ul className="list-none flex gap-6">
-          {navLinks.map((navLink, index) => (
-            <li key={index}>
-              {<Link href={navLink.href}>{navLink.text}</Link>}
-            </li>
-          ))}
-        </ul>
-        <GetAccess href="/dashboard" />
-      </div>
-      <div className="sm:hidden h-14 px-2 text-sm md:h-16 md:text-base bg-brand-black rounded-full flex items-center justify-between w-full max-w-3xl">
-        <img
-          src="/images/logo/logoOrange.svg"
-          alt="Logo"
-          className="h-10 w-auto"
+          className="h-8 w-auto"
         />
 
-        <div className="p-2 rounded-full flex justify-center items-center bg-brand-orange ">
-          <Menu className="text-brand-white"/>
-        </div>
-      </div>
-    </nav>
+        <button
+          className="
+          h-9 w-9 rounded-full
+          flex items-center justify-center
+          bg-brand-orange
+        "
+        >
+          <Menu className="h-5 w-5 text-brand-white" />
+        </button>
+      </nav>
+    </header>
   );
 }
-
-// Navbar logo: 40px height
-
-// Mobile: 28–32px
-
-// Use SVG
-
-// Control height, not width
-
-// Navbar: 64px
-
-// Text: 16px
-
-// Mobile: 56px / 14px
-
-// Logo: 40px
-
-// <nav className="h-14 px-4 text-sm md:h-16 md:text-base">
-
-// what font?

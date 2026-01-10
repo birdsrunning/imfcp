@@ -8,9 +8,9 @@ export default function FeatureCard({
   title: string;
 }) {
   return (
-    <div className="flex items-center gap-3 px-5 h-20 w-64 bg-white border rounded-lg">
-      <span className="text-xl">{icon}</span>
-      <span className="text-sm font-medium whitespace-nowrap">{title}</span>
+    <div className="flex flex-col items-center justify-center gap-3 px-5 h-52 w-64 rounded-2xl border border-white/30 shadow-sm">
+      <span className="text-4xl">{icon}</span>
+      <span className="text-lg font-semibold text-center">{title}</span>
     </div>
   );
 }
