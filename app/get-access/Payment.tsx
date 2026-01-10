@@ -17,7 +17,6 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { paymentSchema, type PaymentSchemaType } from "@/schema/schema";
-import Paystack from "@paystack/inline-js";
 import { z } from "zod";
 
 import React from "react";
@@ -40,18 +39,18 @@ export default function Payment() {
       return;
     }
 
+    const Paystack = (await import("@paystack/inline-js")).default;
     const paystack = new Paystack();
 
     paystack.newTransaction({
       key: publicKey,
       email: data.email,
-      amount: data.amount * 100, // Paystack expects kobo
+      amount: Number(data.amount) * 100,
       onSuccess: (transaction: string) => {
         console.log("Transaction successful:", transaction);
         toast.success("Payment successful!");
       },
       onCancel: () => {
-        console.log("User cancelled");
         toast.error("Transaction Cancelled");
       },
     });
