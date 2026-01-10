@@ -4,7 +4,6 @@ import React from "react";
 import { useEffect, useState } from "react";
 import type { TProfile } from "@/types/types";
 import { ImageGrid } from "@/components/image-grid";
-import { dummyImages } from "@/data/images";
 import SearchBar from "@/components/SearchBar";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
