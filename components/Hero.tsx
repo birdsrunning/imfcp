@@ -35,7 +35,7 @@ export default function Hero() {
 
       {/* Floating word tags */}
       <div className="absolute inset-0 z-10 pointer-events-none">
-        <span className="absolute top-24 left-16 text-sm text-brand-white/50">
+        <span className="absolute top-14 left-16 text-sm text-brand-white/50">
           Prompt-engineered
         </span>
         <span className="absolute top-48 right-24 text-sm text-brand-white/40">
@@ -47,7 +47,7 @@ export default function Hero() {
       </div>
 
       {/* Main content */}
-      <div className="relative z-20 mx-auto max-w-7xl px-6 pt-28 grid gap-4 grid-cols-1">
+      <div className="relative z-20 mx-auto max-w-7xl px-6 pt-16 grid gap-4 grid-cols-1">
         {/* Text + CTA */}
         <div className="max-w-2xl flex flex-col gap-6 justify-center items-center mx-auto text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight">
