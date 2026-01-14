@@ -1,42 +1,85 @@
 "use client";
+
 import React from "react";
 import ProgressBar from "./ProgressBar";
-type PlanType = "free" | "paid";
 import { Button } from "./ui/button";
 
+type PlanType = "free" | "paid" | undefined;
+
 export default function PlanBoard({ plan }: { plan: PlanType }) {
-  const totalFromPlan = (plan: PlanType): number => {
-    if (plan === "free") {
-      return 20;
-    } else {
-      return 500;
-    }
-  };
+  const isFree = !plan || plan === "free";
+
+  // intentionally aspirational
+  const used = isFree ? 20 : 500;
+  const premiumLimit = 500;
+
   return (
     <div
       className="
-  rounded-2xl
-  bg-white/10
-  backdrop-blur-xl
-  border border-white/20
-  shadow-lg
-  p-6
-"
+    rounded-2xl
+    bg-white/10
+    backdrop-blur-xl
+    border border-white/15
+    shadow-lg
+    p-4 
+    flex flex-col gap-4
+  "
     >
-      <div className="flex justify-between">
-        <p>Plan Usage</p>
-        <p>Standard</p>
-      </div>
-      {/* total images */}
-      <div>
-        <p>
-          {totalFromPlan(plan)} <span>/500 images</span>
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <p className="text-xs uppercase tracking-wide text-white/60">
+          Plan usage
         </p>
-        <ProgressBar current={totalFromPlan(plan)} total={500} />
+
+        <span
+          className={`text-xs font-medium px-2 py-0.5 rounded-full
+            ${
+              isFree
+                ? "bg-white/10 text-white/70"
+                : "bg-orange-500/20 text-orange-400"
+            }
+          `}
+        >
+          {isFree ? "Free" : "Premium"}
+        </span>
       </div>
 
-      {/* upgrade to premium button */}
-      <Button>Upgrade to premium</Button>
+      {/* Usage */}
+      <div className="space-y-2">
+        <p className="text-sm font-semibold text-white">
+          {used}
+          <span className="text-white/50 font-normal">
+            {" "}
+            / {premiumLimit} images
+          </span>
+        </p>
+
+        <ProgressBar current={used} total={premiumLimit} />
+
+        {isFree && (
+          <p className="text-[11px] text-white/50 leading-snug">
+            Premium unlocks up to{" "}
+            <span className="text-white/80 font-medium">
+              {premiumLimit} images
+            </span>
+          </p>
+        )}
+      </div>
+
+      {/* CTA */}
+      {isFree && (
+        <Button
+          size="sm"
+          className="
+            mt-2
+            bg-gradient-to-r from-orange-400 to-orange-600
+            text-white
+            hover:opacity-90
+          "
+        >
+          Upgrade to Premium
+        </Button>
+      )}
     </div>
   );
 }

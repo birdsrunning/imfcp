@@ -3,8 +3,17 @@ import { DashboardSearch } from "./dashboard-search";
 
 export function DashboardHeader() {
   return (
-    <div className="flex items-center justify-between">
+    <header
+      className="
+        flex
+        items-center
+        justify-between
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
       <DashboardSearch />
-    </div>
+    </header>
   );
 }

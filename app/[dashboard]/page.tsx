@@ -54,7 +54,16 @@ export default async function DashboardPage(props: {
     <div className="flex min-h-screen w-full">
       {/* to be tacked scrolltrigger */}
 
-      <main className="flex-1 px-6 py-4 space-y-6">
+      <main
+        className="
+    flex-1
+    space-y-6
+    pt-4
+    px-4
+    sm:px-6
+    lg:px-8
+  "
+      >
         <DashboardHeader />
         <ImageGrid images={data.items} />
         <DashboardPagination

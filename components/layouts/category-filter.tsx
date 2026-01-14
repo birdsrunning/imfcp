@@ -40,13 +40,16 @@ export default function CategoryFilter() {
   return (
     <div className="space-y-3">
       {CATEGORIES.map((category) => (
-        <div key={category} className="flex items-center gap-2">
+        <div key={category} className="flex items-center gap-2 text-white/70">
           <Checkbox
             id={category}
             checked={selected.includes(category)}
             onCheckedChange={() => toggleCategory(category)}
           />
-          <Label htmlFor={category} className="cursor-pointer capitalize">
+          <Label
+            htmlFor={category}
+            className="cursor-pointer capitalize text-sm"
+          >
             {category}
           </Label>
         </div>

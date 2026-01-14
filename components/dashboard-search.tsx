@@ -1,4 +1,3 @@
-// components/dashboard-search.tsx
 "use client";
 
 import { Input } from "@/components/ui/input";
@@ -10,7 +9,6 @@ export function DashboardSearch() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // Initialize from URL once
   const [searchValue, setSearchValue] = useState(
     () => searchParams.get("q") ?? ""
   );
@@ -19,8 +17,6 @@ export function DashboardSearch() {
     updates: Record<string, string | string[] | undefined>
   ) {
     const params = new URLSearchParams(searchParams.toString());
-
-    // 🔹 Reset pagination on filter change
     params.delete("page");
 
     for (const [key, value] of Object.entries(updates)) {
@@ -44,19 +40,40 @@ export function DashboardSearch() {
   }
 
   return (
-    <div className="flex items-center gap-4">
+    <div
+      className="
+        flex
+        w-full
+        max-w-xl
+        items-center
+        gap-2
+      "
+    >
       <Input
         type="text"
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
         placeholder="Search images..."
-        className="bg-[#2e2a2b] border border-[#3a3536] rounded-md px-3 py-4 min-w-96"
+        className="
+          flex-1
+          bg-[#2e2a2b]
+          border border-[#3a3536]
+          rounded-lg
+          px-3
+          py-2.5
+          text-sm
+        "
         onKeyDown={(e) => {
           if (e.key === "Enter") handleSearch();
         }}
       />
 
-      <Button onClick={handleSearch}>Search</Button>
+      <Button
+        onClick={handleSearch}
+        className="shrink-0"
+      >
+        Search
+      </Button>
     </div>
   );
 }

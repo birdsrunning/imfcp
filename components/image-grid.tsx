@@ -11,23 +11,24 @@ import { ImageCard } from "./image-card";
 
 export function ImageGrid({ images }: { images: ImageType[] }) {
   return (
-    <div
+    <section
       className="
-      bg-brand-black
         grid
-        gap-4
-        sm:gap-5
-        md:gap-6
         grid-cols-1
+        gap-4
+        px-4
         sm:grid-cols-2
-        md:grid-cols-3
-        lg:grid-cols-4
-        p-4
+        sm:gap-5
+        sm:px-6
+        lg:grid-cols-3
+        xl:grid-cols-4
+        xl:gap-6
+        xl:px-8
       "
     >
       {images.map((image) => (
         <ImageCard key={image.id} image={image} />
       ))}
-    </div>
+    </section>
   );
 }
