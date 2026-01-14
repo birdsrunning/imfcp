@@ -14,7 +14,7 @@ import PlanBoardHome from "./layouts/planBoardHome";
 export default function AppSidebar() {
   return (
     <Sidebar>
-      <SidebarContent className="px-2 py-6 space-y-2">
+      <SidebarContent className="px-2 py-6 space-y-2 mt-14">
         <SidebarGroup>
           <SidebarHeader />
         </SidebarGroup>
