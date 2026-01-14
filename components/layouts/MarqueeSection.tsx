@@ -21,7 +21,7 @@ export default function FeatureMarquee() {
   useAnimationFrame((_, delta) => {
     if (paused || !containerRef.current) return;
 
-    const speed = 0.03; // px per ms
+    const speed = 0.08; // px per ms
     const moveBy = speed * delta;
 
     const width = containerRef.current.scrollWidth / 2;
@@ -36,8 +36,8 @@ export default function FeatureMarquee() {
 
   return (
     <section className="border-t py-16 overflow-hidden">
-      <p className="text-center text-base text-brand-white/60 mb-6">
-        Everything you need to create beautiful work, faster.
+      <p className="text-center text-base text-brand-white mb-6 mx-8">
+        Designed to remove friction between your ideas and the final result.
       </p>
 
       <div
@@ -47,7 +47,7 @@ export default function FeatureMarquee() {
       >
         <motion.div
           ref={containerRef}
-          className="flex gap-6 w-max"
+          className="flex gap-4 w-max"
           style={{ x }}
         >
           {[...features, ...features].map((f, i) => (

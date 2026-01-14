@@ -12,17 +12,17 @@ export default function Navbar() {
       <nav
         className="
         hidden md:flex items-center justify-between
-        h-16 px-8 lg:px-16
-        backdrop-blur-md bg-brand-black/80
+        min-h-2h-16 px-8 lg:px-16
+        backdrop-blur-md bg-brand-black/20
         text-sm lg:text-base
       "
       >
         {/* Left */}
-        <div className="flex items-center gap-12">
+        <div className="flex items-center gap-12 p-4">
           <img
             src="/images/logo/logoOrange.svg"
             alt="Logo"
-            className="h-12 w-auto"
+            className="h-14 w-auto"
           />
 
           <ul className="flex items-center gap-6 text-white/80">

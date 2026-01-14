@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { personaTitles } from "@/data/data";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -17,19 +18,19 @@ export default function Footer() {
   return (
     <footer className="w-full bg-brand-black text-brand-white py-16 px-6 md:px-12 lg:px-20 rounded-t-2xl">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-2">
-            Made for Directors.
+        <div className="mb-12">
+          <h2 className="text-2xl md:text-5xl font-bold mb-2">
+            Made for <span className="bg-brand-orange">Directors.</span>
           </h2>
-          <h2 className="text-4xl md:text-5xl font-bold">
-            Built for Storytellers.
+          <h2 className="text-2xl md:text-5xl font-bold">
+            Built for Creatives.
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
           <div>
             <h3 className="text-xs font-semibold tracking-wider mb-6 uppercase">
-              Company
+              USEFUL LINKS
             </h3>
             <ul className="space-y-3">
               <li>
@@ -37,7 +38,7 @@ export default function Footer() {
                   href="/app"
                   className="hover:text-[#F4683D] transition-colors"
                 >
-                  App.flim
+                  Home
                 </Link>
               </li>
               <li>
@@ -53,7 +54,7 @@ export default function Footer() {
                   href="/blog"
                   className="hover:text-[#F4683D] transition-colors"
                 >
-                  Blog
+                  Blogs
                 </Link>
               </li>
               <li>
@@ -132,17 +133,17 @@ export default function Footer() {
                 <form className="w-full bg-blue-700 flex relative">
                   <input
                     className="flex-1 h-12 focus:ring-0 focus:outline-brand-orange text-brand-black px-2 placeholder:opacity-40 placeholder:font-semibold placeholder:text-brand-black"
-                    placeholder="email?"
+                    placeholder="submit email for newsletters?"
                   />
                   <button className="absolute right-0 top-0 h-full underline text-brand-black font-semibold">
-                    Sign up
+                    Sign up?
                   </button>
                 </form>
                 <hr className=" border-brand-dark" />
               </div>
 
               <div className="text-xs tracking-wider mb-8">
-                © FLIM, ALL RIGHTS RESERVED, 2025
+                © IMFCP, ALL RIGHTS RESERVED, 2026
               </div>
             </div>
           </div>

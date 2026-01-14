@@ -1,5 +1,8 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import FaqCard from "../FaqCard";
+import SpecialQuestionForm from "../SpecialRequestForm";
 
 const FAQS = [
   {
@@ -25,36 +28,52 @@ const FAQS = [
 ];
 
 export default function FaqSection() {
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   return (
     <section className="bg-brand-orange relative rounded-2xl px-6 py-12 md:px-10 md:py-16">
-      <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
-        <img className="w-full h-full" src="/images/2.svg" />
-      </div>
-
-      <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div className="relative z-10 mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-10">
         {/* Left content */}
         <div className="flex flex-col justify-center">
-          <span className="mb-3 text-sm font-medium uppercase tracking-wide text-black/70">
+          <span className="mb-3 text-sm font-medium uppercase tracking-wide text-brand-white">
             FAQ
           </span>
 
-          <h2 className="text-3xl md:text-4xl font-semibold text-black leading-tight">
+          <h2 className="text-3xl md:text-4xl font-semibold text-brand-white leading-tight">
             Frequently asked questions
           </h2>
 
-          <p className="mt-4 max-w-md text-black/70 text-base leading-relaxed">
+          <p className="mt-4 max-w-md text-brand-white text-base leading-relaxed">
             Everything you need to know about our image delivery, licensing, and
-            customization options. If you can’t find your answer here, feel free
-            to reach out.
+            customization options.
           </p>
         </div>
 
         {/* Right content */}
         <div className="flex flex-col gap-4">
-          {FAQS.map((faq, index) => (
-            <FaqCard key={index} question={faq.question} answer={faq.answer} />
-          ))}
+          {!isFormOpen ? (
+            FAQS.map((faq, index) => (
+              <FaqCard
+                key={index}
+                question={faq.question}
+                answer={faq.answer}
+              />
+            ))
+          ) : (
+            <SpecialQuestionForm />
+          )}
         </div>
+      </div>
+
+      {/* Bottom action */}
+      <div className="relative z-10 mt-10 flex justify-center">
+        <button
+          onClick={() => setIsFormOpen((prev) => !prev)}
+          className="rounded-full bg-brand-white px-6 py-3 text-sm font-medium text-brand-orange
+                     transition hover:opacity-90"
+        >
+          {isFormOpen ? "Return to FAQ" : "Have a specific question?"}
+        </button>
       </div>
     </section>
   );

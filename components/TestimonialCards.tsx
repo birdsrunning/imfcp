@@ -26,7 +26,7 @@ export default function TestimonialCards() {
 
   return (
     <div
-      className="relative max-h-96 overflow-hidden"
+      className="relative max-h-96 overflow-hidden mx-auto"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >

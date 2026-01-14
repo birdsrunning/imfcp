@@ -6,12 +6,17 @@ export default function PersonaSection() {
   return (
     <section className="py-6 flex flex-col gap-8">
       <div className="md:max-w-4xl max-w-2xl mx-auto p-6">
-        <h2>Who this is for</h2>
+        <h2 className="font-bold underline">Who this is for?</h2>
 
         <p className="lead text-2xl leading-[200%]">
-          We believe in a creator-first approach to visual resources, using
-          carefully curated images and modern tools. Together, we can build
-          better creative work today and shape the visuals of tomorrow.
+          <span className="">
+            We believe in a creator-first approach to visual resources,
+          </span>{" "}
+          using carefully curated images {' '}
+          <span className="font-light opacity-70">
+            Together, we can build better creative work today and shape the
+            visuals of tomorrow.
+          </span>
         </p>
       </div>
 

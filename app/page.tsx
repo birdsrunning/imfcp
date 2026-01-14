@@ -6,6 +6,7 @@ import Testimonials from "@/components/layouts/Testimonials";
 import FaqSection from "@/components/layouts/FaqSection";
 import Footer from "@/components/layouts/Footer";
 import CtaSection from "@/components/layouts/cta";
+import Pricing from "@/components/layouts/Pricing";
 export default function Page() {
   return (
     <div className="min-h-screen relative pt-16">
@@ -15,6 +16,7 @@ export default function Page() {
       <PersonaSection />
       <FaqSection />
       <Testimonials />
+      <Pricing />
       <CtaSection />
       <Footer />
     </div>

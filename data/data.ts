@@ -57,3 +57,25 @@ export const personas = [
       "Needs realistic visuals for mockups, prototypes, and presentations. High-quality AI imagery helps create believable interfaces and user flows without slowing down the design process.",
   },
 ];
+
+export const personaTitles = [
+  "Director",
+  "UX Designer",
+  "Video Editor",
+  "Game Designer",
+];
+
+export const freemiumOfferings = [
+  "20 free images",
+  "lifetime access",
+  "community access",
+];
+
+export const premiumOfferings = [
+  "500 free images",
+  "lifetime access",
+  "community access",
+  "multiple categories",
+  "multiple orientation",
+  "access both png and jpg format",
+];

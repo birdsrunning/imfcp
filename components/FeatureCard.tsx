@@ -8,7 +8,7 @@ export default function FeatureCard({
   title: string;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-3 px-5 h-52 w-64 rounded-2xl border border-white/30 shadow-sm">
+    <div className="flex flex-col items-center justify-center gap-3 px-5 h-52 w-64 rounded-2xl border border-white/30 shadow-sm hover:border-brand-orange hover:border-2 transition-all duration-300">
       <span className="text-4xl">{icon}</span>
       <span className="text-lg font-semibold text-center">{title}</span>
     </div>
