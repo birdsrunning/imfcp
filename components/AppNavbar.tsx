@@ -1,10 +1,13 @@
 // components/app-navbar.tsx
+import { Bell } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { DashboardSearch } from "./dashboard-search";
 
 export default function AppNavbar() {
   return (
     <header
       className="
-      fixed
+      sticky
       top-0
       left-0
       right-0
@@ -16,18 +19,26 @@ export default function AppNavbar() {
       border-white/10
       flex
       items-center
-      px-4
+    px-6
+      justify-between
     "
     >
-      <div className="text-brand-white font-medium">
-        <img
-          src="/images/logo/logoOrange.svg"
-          alt="Logo"
-          className="h-10 w-auto"
-        />
-      </div>
+      <DashboardSearch />
 
-      <div className="ml-auto">{/* profile / actions */}</div>
+      <div className="">
+        {/* avatar and notification bell */}
+        <div className="flex gap-4 items-center">
+          <Avatar>
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+
+          {/* notification bell */}
+          <div>
+            <Bell />
+          </div>
+        </div>
+      </div>
     </header>
   );
 }

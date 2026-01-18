@@ -1,20 +1,20 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import { Search } from "lucide-react";
 
 export function DashboardSearch() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const [searchValue, setSearchValue] = useState(
-    () => searchParams.get("q") ?? ""
+    () => searchParams.get("q") ?? "",
   );
 
   function updateParams(
-    updates: Record<string, string | string[] | undefined>
+    updates: Record<string, string | string[] | undefined>,
   ) {
     const params = new URLSearchParams(searchParams.toString());
     params.delete("page");
@@ -42,11 +42,12 @@ export function DashboardSearch() {
   return (
     <div
       className="
-        flex
+      relative
+     
         w-full
-        max-w-xl
-        items-center
-        gap-2
+        max-w-xs
+        md:max-w-lg
+       
       "
     >
       <Input
@@ -62,18 +63,17 @@ export function DashboardSearch() {
           px-3
           py-2.5
           text-sm
+          w-full
         "
         onKeyDown={(e) => {
           if (e.key === "Enter") handleSearch();
         }}
       />
 
-      <Button
+      <Search
         onClick={handleSearch}
-        className="shrink-0"
-      >
-        Search
-      </Button>
+        className="h-7 w-7 absolute right-1 top-1 bg-brand-orange rounded-full p-1 text-brand-white hover:bg-brand-orange/80 transition-all duration-300 cursor-pointer"
+      />
     </div>
   );
 }

@@ -1,56 +1,48 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { useRouter, useSearchParams } from "next/navigation"
+import { Button } from "@/components/ui/button";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type DashboardPaginationProps = {
-  page: number
-  hasNextPage: boolean
-  totalPages?: number
-}
+  page: number;
+  hasNextPage: boolean;
+  totalPages?: number;
+};
 
 export function DashboardPagination({
   page,
   hasNextPage,
   totalPages,
 }: DashboardPaginationProps) {
-  const router = useRouter()
-  const searchParams = useSearchParams()
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   function goToPage(newPage: number) {
-    const params = new URLSearchParams(searchParams.toString())
+    const params = new URLSearchParams(searchParams.toString());
 
     if (newPage <= 1) {
-      params.delete("page")
+      params.delete("page");
     } else {
-      params.set("page", String(newPage))
+      params.set("page", String(newPage));
     }
 
-    router.push(`?${params.toString()}`)
+    router.push(`?${params.toString()}`);
   }
 
   return (
-    <div className="flex items-center justify-between gap-4 pt-4">
-      <Button
-        variant="outline"
-        disabled={page <= 1}
-        onClick={() => goToPage(page - 1)}
-      >
+    <div className="flex items-center justify-between gap-4 pt-6 px-2 mb-10">
+      <Button disabled={page <= 1} onClick={() => goToPage(page - 1)}>
         Previous
       </Button>
 
-      <span className="text-sm text-muted-foreground">
+      <span className="text-sm text-muted-foreground underline">
         Page {page}
         {totalPages ? ` of ${totalPages}` : ""}
       </span>
 
-      <Button
-        variant="outline"
-        disabled={!hasNextPage}
-        onClick={() => goToPage(page + 1)}
-      >
+      <Button disabled={!hasNextPage} onClick={() => goToPage(page + 1)}>
         Next
       </Button>
     </div>
-  )
+  );
 }

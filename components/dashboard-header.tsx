@@ -9,8 +9,7 @@ export function DashboardHeader() {
         items-center
         justify-between
         px-4
-        sm:px-6
-        lg:px-8
+        
       "
     >
       <DashboardSearch />

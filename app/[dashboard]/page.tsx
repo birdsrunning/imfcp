@@ -31,14 +31,17 @@ export default async function DashboardPage(props: {
   const categories = Array.isArray(searchParams.category)
     ? searchParams.category
     : searchParams.category
-    ? [searchParams.category]
-    : [];
+      ? [searchParams.category]
+      : [];
   const orientation = searchParams.orientation || undefined;
 
   const session = await auth.api.getSession({ headers: await headers() });
   if (!session) {
     redirect("/auth");
   }
+  const role = session.role;
+  const isAdmin = role === "admin";
+  const isPaid = session.paymentStatus === "paid";
 
   const page = Math.max(1, Number(searchParams.page) || 1);
 
@@ -56,16 +59,19 @@ export default async function DashboardPage(props: {
 
       <main
         className="
+        flex
+        flex-col
+        gap-4
+        relative
     flex-1
-    space-y-6
-    pt-4
     px-4
     sm:px-6
     lg:px-8
+    pb-6
   "
       >
-        <DashboardHeader />
-        <ImageGrid images={data.items} />
+        <ImageGrid images={data.items} isAdmin={isAdmin} isPaid={isPaid} />
+
         <DashboardPagination
           page={data.page}
           hasNextPage={data.hasNextPage}
@@ -75,5 +81,3 @@ export default async function DashboardPage(props: {
     </div>
   );
 }
-
-// add response that would show response once query returns empty
