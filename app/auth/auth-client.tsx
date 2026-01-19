@@ -50,11 +50,14 @@ export default function AuthClientPage() {
       {/* subtle orange glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,120,0,0.15),transparent_60%)]" />
 
-      <img
-        src="/images/logo/logoOrange.svg"
-        alt="Logo"
-        className="h-14 w-auto absolute top-6 left-6"
-      />
+      <div className="absolute top-6 left-6 flex gap-4 items-center">
+        <img
+          src="/images/logo/logoOrange.svg"
+          alt="Logo"
+          className="h-14 w-auto"
+        />
+        <h1>IMFC</h1>
+      </div>
 
       <div className="relative flex items-center justify-center p-4 pt-24">
         <div className="w-full max-w-md space-y-8 rounded-2xl bg-brand-black/80 backdrop-blur border border-brand-white/10 p-8 shadow-xl">

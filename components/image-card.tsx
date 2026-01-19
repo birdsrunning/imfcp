@@ -7,7 +7,6 @@ import type { ImageCardProps } from "@/types/types";
 export function ImageCard({
   image,
   isAdmin,
-  isPaid,
 }: ImageCardProps & {
   isAdmin: boolean;
   isPaid: boolean;
