@@ -7,7 +7,11 @@ import { redirect } from "next/navigation";
 export default async function Sesame() {
   const session = await auth.api.getSession({ headers: await headers() });
   if (!session) {
-    redirect("sesame-seed/auth");
+    redirect("/sesame-seed/auth");
   }
-  return <SesameSeed />;
+  if (session.role === "admin") {
+    return <SesameSeed />;
+  } else {
+    redirect("/");
+  }
 }

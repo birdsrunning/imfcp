@@ -7,6 +7,14 @@ export const userRoleEnum = pgEnum("user_role", ["user", "admin"]);
 
 export const paymentStatusEnum = pgEnum("payment_status", ["free", "paid"]);
 
+export const accessTierEnum = pgEnum("access_tier", ["free", "premium"]);
+
+export const paymentStateEnum = pgEnum("payment_state", [
+  "INITIALIZED",
+  "SUCCESS",
+  "FAILED",
+]);
+
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
@@ -36,7 +44,7 @@ export const session = pgTable(
       .notNull()
       .references(() => user.id, { onDelete: "cascade" }),
   },
-  (table) => [index("session_userId_idx").on(table.userId)]
+  (table) => [index("session_userId_idx").on(table.userId)],
 );
 
 export const account = pgTable(
@@ -60,7 +68,7 @@ export const account = pgTable(
       .$onUpdate(() => /* @__PURE__ */ new Date())
       .notNull(),
   },
-  (table) => [index("account_userId_idx").on(table.userId)]
+  (table) => [index("account_userId_idx").on(table.userId)],
 );
 
 export const verification = pgTable(
@@ -76,7 +84,7 @@ export const verification = pgTable(
       .$onUpdate(() => /* @__PURE__ */ new Date())
       .notNull(),
   },
-  (table) => [index("verification_identifier_idx").on(table.identifier)]
+  (table) => [index("verification_identifier_idx").on(table.identifier)],
 );
 
 export const userProfile = pgTable("user_profile", {
@@ -93,8 +101,34 @@ export const userProfile = pgTable("user_profile", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
-// orientation fo
-export const orientationEnum = pgEnum("orientation", ["landscape", "portrait"]);
+export const payments = pgTable(
+  "payments",
+  {
+    id: text("id").primaryKey(),
+
+    userId: text("user_id")
+      .notNull()
+      .references(() => user.id, { onDelete: "cascade" }),
+
+    reference: text("reference").notNull().unique(),
+
+    amount: text("amount").notNull(), // store as string or integer (kobo)
+    currency: text("currency").default("NGN").notNull(),
+
+    provider: text("provider").default("paystack").notNull(),
+
+    status: paymentStateEnum("status").default("INITIALIZED").notNull(),
+
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at")
+      .$onUpdate(() => /* @__PURE__ */ new Date())
+      .notNull(),
+  },
+  (table) => [
+    index("payments_userId_idx").on(table.userId),
+    index("payments_reference_idx").on(table.reference),
+  ],
+);
 
 export const images = pgTable("images", {
   id: text("id").primaryKey(), // unique id for the image, e.g., UUID
@@ -112,10 +146,8 @@ export const images = pgTable("images", {
 
   originalKey: text("original_key").notNull(),
 
-  isPremium: boolean("is_premium").default(false).notNull(),
-
-  // enforced enum ✅
-  orientation: orientationEnum("orientation").notNull(),
+  // access control (replaces isPremium)
+  accessTier: accessTierEnum("access_tier").default("free").notNull(),
 
   createdAt: timestamp("created_at", { withTimezone: true })
     .defaultNow()
@@ -169,4 +201,15 @@ export const accountRelations = relations(account, ({ one }) => ({
     fields: [account.userId],
     references: [user.id],
   }),
+}));
+
+export const paymentRelations = relations(payments, ({ one }) => ({
+  user: one(user, {
+    fields: [payments.userId],
+    references: [user.id],
+  }),
+}));
+
+export const userRelationsWithPayments = relations(user, ({ many }) => ({
+  payments: many(payments),
 }));

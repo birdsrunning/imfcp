@@ -3,6 +3,7 @@
 import React from "react";
 import ProgressBar from "./ProgressBar";
 import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
 
 type PlanType = "free" | "paid" | undefined;
 
@@ -12,6 +13,8 @@ export default function PlanBoard({ plan }: { plan: PlanType }) {
   // intentionally aspirational
   const used = isFree ? 20 : 500;
   const premiumLimit = 500;
+
+  const router = useRouter();
 
   return (
     <div
@@ -76,6 +79,9 @@ export default function PlanBoard({ plan }: { plan: PlanType }) {
             text-white
             hover:opacity-90
           "
+          onClick={() => {
+            router.push("/checkout");
+          }}
         >
           Upgrade to Premium
         </Button>

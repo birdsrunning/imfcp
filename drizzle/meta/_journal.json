@@ -8,6 +8,27 @@
       "when": 1766817405039,
       "tag": "0000_freezing_lily_hollister",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1768928435214,
+      "tag": "0001_curved_domino",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1769022984068,
+      "tag": "0002_unique_lady_mastermind",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1769198625774,
+      "tag": "0003_spotty_nuke",
+      "breakpoints": true
     }
   ]
 }

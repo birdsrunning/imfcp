@@ -79,3 +79,5 @@ export const premiumOfferings = [
   "multiple orientation",
   "access both png and jpg format",
 ];
+
+export const CATEGORIES = ["abstract", "fashion", "food", "travel"] as const

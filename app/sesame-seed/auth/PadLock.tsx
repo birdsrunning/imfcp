@@ -182,7 +182,7 @@ export default function PadLock() {
           </form>
 
           {/* Toggle between Sign In and Sign Up */}
-          {/* <div className="text-center">
+          <div className="text-center">
             <button
               type="button"
               onClick={() => {
@@ -196,7 +196,7 @@ export default function PadLock() {
                 ? "Don't have an account? Sign up"
                 : "Already have an account? Sign in"}
             </button>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

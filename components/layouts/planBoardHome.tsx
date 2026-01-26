@@ -6,7 +6,8 @@ export default async function PlanBoardHome() {
   const session = await auth.api.getSession({ headers: await headers() });
 
   if (session) {
-    <PlanBoard plan={session.paymentStatus} />;
+    return <PlanBoard plan={session.paymentStatus} />;
+  } else {
+    return <PlanBoard plan={undefined} />;
   }
-  return <PlanBoard plan={undefined} />;
 }

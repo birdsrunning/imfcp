@@ -6,7 +6,6 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { getImages } from "@/lib/actions/get-images";
 import { ImageGrid } from "@/components/image-grid";
-import { DashboardHeader } from "@/components/dashboard-header";
 import { DashboardPagination } from "@/components/dashboard-pagination";
 
 type Orientation = "landscape" | "portrait";
@@ -25,7 +24,7 @@ export default async function DashboardPage(props: {
 }) {
   // Await searchParams because in dynamic route it is async
   const searchParams = await props.searchParams;
-  console.log(searchParams);
+  // console.log(searchParams);
 
   const q = searchParams.q?.trim() || undefined;
   const categories = Array.isArray(searchParams.category)

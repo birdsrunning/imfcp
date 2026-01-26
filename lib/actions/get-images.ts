@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { images } from "@/db/schema";
-import { sql, and, ilike, asc, eq, count } from "drizzle-orm";
+import { sql, and, ilike, asc, count } from "drizzle-orm";
 
 type Orientation = "landscape" | "portrait";
 
@@ -15,7 +15,6 @@ type GetImagesArgs = {
 export async function getImages({
   categories = [],
   q,
-  orientation,
   limit = 10,
   page = 1,
 }: GetImagesArgs) {
@@ -34,10 +33,6 @@ export async function getImages({
       );
     }
 
-    // 🔹 orientation
-    if (orientation) {
-      conditions.push(eq(images.orientation, orientation));
-    }
 
     // 🔹 text search
     if (q?.trim()) {

@@ -20,7 +20,8 @@ export default function AuthClientPage() {
     try {
       await signInSocial(provider);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Authentication failed");
+      setError("Authentication failed");
+      console.log(err instanceof Error ? err.message : "Authentication failed");
     } finally {
       setIsLoading(false);
     }
@@ -39,7 +40,8 @@ export default function AuthClientPage() {
       if (result?.user) router.push("/dashboard");
       else setError("Authentication failed");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Authentication error");
+      setError("Authentication error");
+      console.log(err instanceof Error ? err.message : "Authentication failed");
     } finally {
       setIsLoading(false);
     }

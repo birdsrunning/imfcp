@@ -42,38 +42,74 @@ export function DashboardSearch() {
   return (
     <div
       className="
-      relative
-     
-        w-full
-        max-w-xs
-        md:max-w-lg
-       
-      "
+    relative
+    w-full
+    max-w-xs
+    md:max-w-64
+    hidden
+    sm:block
+  "
     >
-      <Input
-        type="text"
-        value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
-        placeholder="Search images..."
+      {/* glass border */}
+      <div
         className="
-          flex-1
-          bg-[#2e2a2b]
-          border border-[#3a3536]
-          rounded-lg
-          px-3
-          py-2.5
-          text-sm
-          w-full
-        "
-        onKeyDown={(e) => {
-          if (e.key === "Enter") handleSearch();
-        }}
-      />
+      relative
+      rounded-full
+      p-[1px]
+      bg-white/20
+      backdrop-blur-md
+      border border-white/30
+      shadow-[0_0_18px_rgba(255,255,255,0.12)]
+    "
+      >
+        <Input
+          type="text"
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+          placeholder="Search images..."
+          className="
+        w-full
+        rounded-full
+        bg-white/5
+        border-none
+        pl-4
+        pr-11
+        py-2.5
+        text-sm
+        text-white
+        placeholder:text-white/50
+        focus-visible:ring-0
+        focus-visible:ring-offset-0
+      "
+          onKeyDown={(e) => {
+            if (e.key === "Enter") handleSearch();
+          }}
+        />
 
-      <Search
-        onClick={handleSearch}
-        className="h-7 w-7 absolute right-1 top-1 bg-brand-orange rounded-full p-1 text-brand-white hover:bg-brand-orange/80 transition-all duration-300 cursor-pointer"
-      />
+        {/* search action */}
+        <button
+          onClick={handleSearch}
+          className="
+        absolute
+        right-1
+        top-1
+        h-8
+        w-8
+        rounded-full
+        flex
+        items-center
+        justify-center
+        bg-brand-orange/90
+        text-brand-white
+        shadow-[0_0_12px_rgba(255,140,0,0.5)]
+        hover:bg-brand-orange
+        hover:shadow-[0_0_18px_rgba(255,140,0,0.75)]
+        transition-all
+      "
+        >
+          <Search className="h-4 w-4" />
+        </button>
+      </div>
     </div>
   );
 }

@@ -13,11 +13,7 @@ import {
 import { toast } from "sonner";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  IMAGE_ORIENTATION,
-  UploadFormSchema,
-  UploadFormType,
-} from "@/schema/schema";
+import { ACCESS_TIER, UploadFormSchema, UploadFormType } from "@/schema/schema";
 import { Button } from "@/components/ui/button";
 // import { uploadHandler } from "@/lib/actions/upload-handler";
 import { Textarea } from "@/components/ui/textarea";
@@ -32,6 +28,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { uploadImage } from "@/lib/actions/upload-handler";
 import { Loader } from "@/components/Loader";
+import { CATEGORIES } from "@/data/data";
 
 export default function UploadClient() {
   const [loading, setLoading] = useState(false);
@@ -41,7 +38,7 @@ export default function UploadClient() {
     defaultValues: {
       title: "",
       description: "",
-      orientation: "landscape" as const,
+      accessTier: "premium",
       categories: {
         abstract: false,
         travel: false,
@@ -52,15 +49,20 @@ export default function UploadClient() {
   });
 
   async function onSubmit(data: UploadFormType) {
-    setLoading(true);
-    const result = await uploadImage(data);
-    if (result.success) {
+    try {
+      setLoading(true);
+      const result = await uploadImage(data);
+      if (result.success) {
+        setLoading(false);
+        toast.success(result.message);
+        form.reset();
+      } else {
+        toast.error(result.message);
+      }
+    } catch {
+      toast.error("Something went wrong!");
+    } finally {
       setLoading(false);
-      toast.success(result.message);
-      form.reset();
-    } else {
-      setLoading(false);
-      toast.error(result.message);
     }
   }
 
@@ -73,7 +75,7 @@ export default function UploadClient() {
             control={form.control}
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor={field.name}>Name</FieldLabel>
+                <FieldLabel htmlFor={field.name}>Title</FieldLabel>
                 <Input
                   {...field}
                   id={field.name}
@@ -112,13 +114,13 @@ export default function UploadClient() {
             )}
           />
 
-          {/* Orientation */}
+          {/* access tier */}
           <Controller
-            name="orientation"
+            name="accessTier"
             control={form.control}
             render={({ field: { onChange, onBlur, ...field }, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor={field.name}>Orientation</FieldLabel>
+                <FieldLabel htmlFor={field.name}>Access Tier</FieldLabel>
                 <Select {...field} onValueChange={onChange}>
                   <SelectTrigger
                     id={field.name}
@@ -128,9 +130,9 @@ export default function UploadClient() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {IMAGE_ORIENTATION.map((orientation) => (
-                      <SelectItem key={orientation} value={orientation}>
-                        {orientation}
+                    {ACCESS_TIER.map((accessTier) => (
+                      <SelectItem key={accessTier} value={accessTier}>
+                        {accessTier}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -216,7 +218,53 @@ export default function UploadClient() {
             </FieldContent>
 
             <FieldGroup data-slot="checkbox-group">
-              <Controller
+              {CATEGORIES.map((category) => (
+                <Controller
+                  key={category}
+                  name={`categories.${category}`}
+                  control={form.control}
+                  render={({
+                    field: { value, onChange, ...field },
+                    fieldState,
+                  }) => (
+                    <Field
+                      data-invalid={fieldState.invalid}
+                      orientation={"horizontal"}
+                    >
+                      <Checkbox
+                        {...field}
+                        id={field.name}
+                        checked={value}
+                        onCheckedChange={onChange}
+                        aria-invalid={fieldState.invalid}
+                      />
+
+                      <FieldContent>
+                        <FieldLabel htmlFor={field.name}>{category}</FieldLabel>
+
+                        {fieldState.invalid && (
+                          <FieldError errors={[fieldState.error]} />
+                        )}
+                      </FieldContent>
+                    </Field>
+                  )}
+                />
+              ))}
+            </FieldGroup>
+          </FieldSet>
+
+          <Button disabled={loading} type="submit">
+            Upload
+            {loading && <Loader />}
+          </Button>
+        </FieldGroup>
+      </form>
+    </div>
+  );
+}
+
+{
+  /* <Controller
                 name="categories.abstract"
                 control={form.control}
                 render={({
@@ -331,16 +379,5 @@ export default function UploadClient() {
                     </FieldContent>
                   </Field>
                 )}
-              />
-            </FieldGroup>
-          </FieldSet>
-
-          <Button disabled={loading} type="submit">
-            Upload
-            {loading && <Loader />}
-          </Button>
-        </FieldGroup>
-      </form>
-    </div>
-  );
+              /> */
 }

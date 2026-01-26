@@ -33,7 +33,15 @@ const extMap: Record<string, string> = {
 
 export async function uploadImage(unSafeData: UploadFormType) {
   const session = await auth.api.getSession({ headers: await headers() });
+  console.log(session);
+  if (!session) {
+    return { success: false, data: null, message: "Unauthorized" };
+  }
   if (!session?.user?.id) {
+    return { success: false, data: null, message: "Unauthorized" };
+  }
+
+  if (session.role !== "admin") {
     return { success: false, data: null, message: "Unauthorized" };
   }
 
@@ -46,9 +54,9 @@ export async function uploadImage(unSafeData: UploadFormType) {
   if (!file.type.startsWith("image/"))
     return { success: false, data: null, message: "File not of type image" };
 
-  const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+  const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB
   if (file.size > MAX_FILE_SIZE) {
-    return { success: false, data: null, message: "File too large (max 10MB)" };
+    return { success: false, data: null, message: "File too large (max 20MB)" };
   }
 
   const originalBuffer = Buffer.from(await file.arrayBuffer());
@@ -60,9 +68,9 @@ export async function uploadImage(unSafeData: UploadFormType) {
       width: 800,
       height: 600,
       fit: "cover",
-      position: "centre",
+      position: "center",
     })
-    .webp({ quality: 75 })
+    .webp({ quality: 100 })
     .toBuffer();
 
   const title = safeData.data.title;
@@ -91,7 +99,7 @@ export async function uploadImage(unSafeData: UploadFormType) {
           Body: thumbnailBuffer,
           ContentType: "image/webp",
           CacheControl: "public, max-age=31536000, immutable",
-        })
+        }),
       ),
       S3.send(
         new PutObjectCommand({
@@ -100,7 +108,7 @@ export async function uploadImage(unSafeData: UploadFormType) {
           Body: originalBuffer,
           ContentType: file.type,
           CacheControl: "public, max-age=31536000, immutable",
-        })
+        }),
       ),
     ]);
 
@@ -119,8 +127,7 @@ export async function uploadImage(unSafeData: UploadFormType) {
         categories,
         thumbnailUrlKey: thumbnailKey,
         originalKey,
-        orientation: safeData.data.orientation,
-        isPremium: true,
+        accessTier: safeData.data.accessTier,
       })
       .returning();
 
@@ -138,13 +145,13 @@ export async function uploadImage(unSafeData: UploadFormType) {
           new DeleteObjectCommand({
             Bucket: "thumbnails-imfcp",
             Key: thumbnailKey,
-          })
+          }),
         ),
         await S3.send(
           new DeleteObjectCommand({
             Bucket: "imfcp",
             Key: originalKey,
-          })
+          }),
         ),
       ]);
 
@@ -166,13 +173,13 @@ export async function uploadImage(unSafeData: UploadFormType) {
         new DeleteObjectCommand({
           Bucket: "thumbnails-imfcp",
           Key: thumbnailKey,
-        })
+        }),
       ),
       S3.send(
         new DeleteObjectCommand({
           Bucket: "imfcp",
           Key: originalKey,
-        })
+        }),
       ),
     ]);
 
