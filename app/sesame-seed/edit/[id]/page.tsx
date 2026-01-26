@@ -7,12 +7,6 @@ import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import EditClient from "./Edit-client";
 
-// export default async function page(props: { params: Promise<{ id: string }> }) {
-//   const { id } = await props.params; // ✅ await before accessing
-//   return <Project id={id} />;
-// }
-
-
 
 export default async function EditImagePage(props: {
   params: Promise<{ id: string }>;

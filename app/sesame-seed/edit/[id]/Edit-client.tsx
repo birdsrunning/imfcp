@@ -278,7 +278,7 @@ export default function EditClient({ image }: { image: ImageType }) {
           <Button
             type="button"
             disabled={loading}
-            variant={"outline"}
+            variant={"ghost"}
             onClick={() => {
               router.push("/sesame-seed");
             }}
