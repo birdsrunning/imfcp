@@ -12,7 +12,6 @@ export default function AppNavbar() {
         flex items-center justify-between gap-6
         bg-brand-black/80
         backdrop-blur-xl
-        border-b border-white/10
       "
     >
       {/* left: logo (mobile) */}

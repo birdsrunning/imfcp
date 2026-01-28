@@ -3,8 +3,19 @@ import AppSidebar from "@/components/app-sidebar";
 import AppNavbar from "@/components/AppNavbar";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Toaster } from "sonner";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const session = await auth.api.getSession({ headers: await headers() });
+  if (!session) {
+    redirect("/auth");
+  }
   return (
     <SidebarProvider>
       <AppSidebar />

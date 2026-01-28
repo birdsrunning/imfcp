@@ -63,14 +63,14 @@ export async function uploadImage(unSafeData: UploadFormType) {
 
   // thumbnail
   const thumbnailBuffer = await sharp(originalBuffer)
-    .rotate()
+    .rotate() // respect EXIF orientation
     .resize({
       width: 800,
-      height: 600,
-      fit: "cover",
+      height: 1000, // ✅ 4:5 aspect ratio
+      fit: "cover", // fills the frame, crops if needed
       position: "center",
     })
-    .webp({ quality: 100 })
+    .webp({ quality: 90 }) // 100 is overkill for web
     .toBuffer();
 
   const title = safeData.data.title;

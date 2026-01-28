@@ -3,7 +3,7 @@ export const dynamic = "force-dynamic";
 import React from "react";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
+
 import { getImages } from "@/lib/actions/get-images";
 import { ImageGrid } from "@/components/image-grid";
 import { DashboardPagination } from "@/components/dashboard-pagination";
@@ -35,12 +35,10 @@ export default async function DashboardPage(props: {
   const orientation = searchParams.orientation || undefined;
 
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) {
-    redirect("/auth");
-  }
-  const role = session.role;
+
+  const role = session?.role;
   const isAdmin = role === "admin";
-  const isPaid = session.paymentStatus === "paid";
+  const isPaid = session?.paymentStatus === "paid";
 
   const page = Math.max(1, Number(searchParams.page) || 1);
 

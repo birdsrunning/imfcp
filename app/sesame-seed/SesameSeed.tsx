@@ -24,12 +24,14 @@ export default function SesameSeed() {
       icon: DollarSign,
       title: "Paystack Logs",
       description: "Track payment transactions and Paystack-related events.",
+      action: () => router.push("/sesame-seed/payment-logs"),
     },
     {
       icon: ImageUpscale,
       title: "Edit Stored Images",
       description:
         "Modify existing images in the database, including title and category.",
+      action: () => router.push("/dashboard"),
     },
     {
       icon: Upload,

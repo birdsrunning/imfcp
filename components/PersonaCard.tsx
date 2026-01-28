@@ -2,7 +2,6 @@
 
 import React, { useRef } from "react";
 import Image from "next/image";
-import { motion, useInView } from "framer-motion";
 
 export default function PersonaCard({
   title,
@@ -17,12 +16,6 @@ export default function PersonaCard({
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
 
-  // Trigger when 40% of card is visible
-  const isInView = useInView(ref, {
-    margin: "-40% 0px -40% 0px",
-    once: false,
-  });
-
   return (
     <div
       ref={ref}
@@ -36,21 +29,18 @@ export default function PersonaCard({
       />
 
       {/* Overlay */}
-      <motion.div
-        className="relative z-10 min-h-96 p-6 rounded-2xl"
-        animate={{
-          background: isInView
-            ? "linear-gradient(to top, rgba(244,104,61,0.80), rgba(244,104,61,0))"
-            : "rgba(35, 31, 32, 1)",
-        }}
-        transition={{ duration: 1, ease: "easeOut" }}
-      >
-        <div className="sticky top-[70%] text-brand-white">
-          <div className="text-2xl">{icon}</div>
-          <h3 className="mt-4 text-lg font-medium">{title}</h3>
-          <p className="mt-2 text-sm leading-relaxed">{description}</p>
-        </div>
-      </motion.div>
+     <div
+  className="relative z-10 min-h-96 p-6 rounded-2xl"
+  style={{
+    background: "linear-gradient(to top, rgba(244,104,61,0.80), rgba(244,104,61,0))",
+  }}
+>
+  <div className="sticky top-[70%] text-[#EAE8E8]">
+    <div className="text-2xl">{icon}</div>
+    <h3 className="mt-4 text-lg font-medium">{title}</h3>
+    <p className="mt-2 text-sm leading-relaxed">{description}</p>
+  </div>
+</div>
     </div>
   );
 }
