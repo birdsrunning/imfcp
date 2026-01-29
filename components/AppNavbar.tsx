@@ -1,6 +1,7 @@
 // components/app-navbar.tsx
 import { Bell, Settings } from "lucide-react";
 import { DashboardSearch } from "./dashboard-search";
+import NotificationBell from "./notifications/notification-bell";
 
 export default function AppNavbar() {
   return (
@@ -32,7 +33,7 @@ export default function AppNavbar() {
       {/* right: actions */}
       <div className="flex items-center gap-3">
         {/* notification bell */}
-        <div
+        {/* <div
           className="
             relative
             rounded-full
@@ -56,7 +57,8 @@ export default function AppNavbar() {
           >
             <Bell className="h-5 w-5 text-white" />
           </button>
-        </div>
+        </div> */}
+        <NotificationBell />
 
         {/* settings */}
         <div

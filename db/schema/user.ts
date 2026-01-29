@@ -15,6 +15,13 @@ export const paymentStateEnum = pgEnum("payment_state", [
   "FAILED",
 ]);
 
+export const notificationTypeEnum = pgEnum("notification_type", [
+  "info",
+  "success",
+  "error",
+]);
+
+
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
@@ -158,6 +165,34 @@ export const images = pgTable("images", {
     .notNull(),
 });
 
+export const notifications = pgTable(
+  "notifications",
+  {
+    id: text("id").primaryKey(), // uuid / cuid
+
+    userId: text("user_id")
+      .notNull()
+      .references(() => user.id, { onDelete: "cascade" }),
+
+    title: text("title").notNull(),
+
+    message: text("message").notNull(),
+
+    type: notificationTypeEnum("type").notNull().default("info"),
+
+    link: text("link"), // optional: /billing, /account, etc
+
+    read: boolean("read").notNull().default(false),
+
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => [
+    index("notifications_userId_idx").on(table.userId),
+    index("notifications_read_idx").on(table.read),
+  ],
+);
+
+
 // Relation from image → user
 export const userImageRelations = relations(images, ({ one }) => ({
   user: one(user, {
@@ -171,6 +206,13 @@ export const userRelationsWithImages = relations(user, ({ many }) => ({
   images: many(images),
 }));
 
+export const notificationRelations = relations(notifications, ({ one }) => ({
+  user: one(user, {
+    fields: [notifications.userId],
+    references: [user.id],
+  }),
+}));
+
 export const userProfileRelations = relations(userProfile, ({ one }) => ({
   user: one(user, {
     fields: [userProfile.userId],
@@ -181,6 +223,7 @@ export const userProfileRelations = relations(userProfile, ({ one }) => ({
 export const userRelations = relations(user, ({ many, one }) => ({
   sessions: many(session),
   accounts: many(account),
+  notifications: many(notifications),
 
   // Adding this block to enable querying profile from the user side
   profile: one(userProfile, {

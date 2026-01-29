@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn, signUp, signInSocial } from "@/lib/actions/auth-actions";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function AuthClientPage() {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -149,6 +150,14 @@ export default function AuthClientPage() {
               required
               className="w-full rounded-lg bg-brand-black border border-brand-white/20 px-3 py-2 text-brand-white placeholder:text-brand-white/40 focus:outline-none focus:ring-2 focus:ring-brand-orange"
             />
+
+            {isSignIn && (
+              <div className="w-full flex justify-end">
+                <Link href={"/forgot-password"} className="underline">
+                  Forgot password?
+                </Link>
+              </div>
+            )}
 
             <Button
               type="submit"

@@ -29,6 +29,13 @@
       "when": 1769198625774,
       "tag": "0003_spotty_nuke",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1769571807586,
+      "tag": "0004_deep_star_brand",
+      "breakpoints": true
     }
   ]
 }

@@ -1,6 +1,19 @@
 import { auth } from "@/lib/auth";
 import { z } from "zod";
+import { notificationTypeEnum } from "@/db/schema";
 
+export type NotificationType = (typeof notificationTypeEnum.enumValues)[number];
+
+export interface Notification {
+  id: string;
+  userId: string;
+  title: string;
+  message: string;
+  type: NotificationType;
+  link: string | null;
+  read: boolean;
+  createdAt: Date;
+}
 
 // what's this?
 export interface ImageCardProps {

@@ -4,6 +4,10 @@ import { db } from "@/db";
 import * as schema from "@/db/schema";
 import { nextCookies } from "better-auth/next-js";
 import { customSession } from "better-auth/plugins";
+import { Resend } from "resend";
+import ForgotPasswordEmail from "@/components/emails/reset-password";
+
+const resend = new Resend(process.env.RESEND_API_KEY as string);
 
 const options = {
   database: drizzleAdapter(db, {
@@ -12,11 +16,18 @@ const options = {
   }),
   emailAndPassword: {
     enabled: true,
-  },
-  socialProviders: {
-    google: {
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    sendResetPassword: async ({ user, url }) => {
+      console.log(url);
+      await resend.emails.send({
+        from: `${process.env.EMAIL_SENDER_NAME} <${process.env.EMAIL_SENDER_ADDRESS}>`,
+        to: user.email,
+        subject: "Reset your password",
+        react: ForgotPasswordEmail({
+          username: user.name,
+          resetUrl: url,
+          userEmail: user.email,
+        }),
+      });
     },
   },
   plugins: [nextCookies()],

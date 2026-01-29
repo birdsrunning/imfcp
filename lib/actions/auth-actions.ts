@@ -5,12 +5,13 @@ import { auth } from "../auth";
 import { redirect } from "next/navigation";
 import { db } from "@/db";
 import { userProfile } from "@/db/schema";
+import { createNotification } from "./notifications";
 
 // this creates normal user
 const createNormalUser = async (
   email: string,
   password: string,
-  name: string
+  name: string,
 ) => {
   const result = await auth.api.signUpEmail({
     body: {
@@ -35,6 +36,14 @@ const createNormalUser = async (
     paymentStatus: "free",
   });
 
+  await createNotification({
+    userId: newUser.id,
+    title: "Welcome to IMFC 🎉",
+    message: `Hi ${name}, your account has been successfully created.`,
+    type: "success",
+    link: "/dashboard", // normal user landing page
+  });
+
   return result;
 };
 
@@ -42,7 +51,7 @@ const createNormalUser = async (
 const createAdminUser = async (
   email: string,
   password: string,
-  name: string
+  name: string,
 ) => {
   const result = await auth.api.signUpEmail({
     body: {
@@ -67,6 +76,15 @@ const createAdminUser = async (
     paymentStatus: "paid",
   });
 
+  // 🔔 Create admin welcome notification
+  await createNotification({
+    userId: newUser.id,
+    title: "Welcome to IMFC Admin 🎉",
+    message: `Hi ${name}, your admin account has been successfully created.`,
+    type: "success",
+    link: "/",
+  });
+
   return result;
 };
 
@@ -74,7 +92,7 @@ const createAdminUser = async (
 export const signAdminUserUp = async (
   email: string,
   password: string,
-  name: string
+  name: string,
 ) => {
   const result = await createAdminUser(email, password, name);
   return result;
@@ -115,7 +133,7 @@ export const signInSocial = async (provider: "github" | "google") => {
   const { url } = await auth.api.signInSocial({
     body: {
       provider,
-      callbackURL: "/dashboard",
+      callbackURL: "/api/auth/social/callback",
     },
   });
 
