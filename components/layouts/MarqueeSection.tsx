@@ -4,13 +4,15 @@ import { motion, useMotionValue, useAnimationFrame } from "framer-motion";
 import { useRef, useState } from "react";
 import FeatureCard from "../FeatureCard";
 
+// Updated features aligned with the product
 const features = [
-  { icon: "📊", title: "Real-time analytics" },
-  { icon: "⚡", title: "Fast integrations" },
-  { icon: "🔒", title: "Secure by default" },
-  { icon: "📈", title: "Growth insights" },
-  { icon: "🧠", title: "Smart automation" },
-  { icon: "🛠️", title: "Custom workflows" },
+  { icon: "🎨", title: "Curated Visuals" },
+  { icon: "⚡", title: "Fast Asset Generation" },
+  { icon: "📈", title: "Insights & Metrics" },
+  { icon: "🧠", title: "AI-powered Suggestions" },
+  { icon: "🛠️", title: "Custom Workflows" },
+  { icon: "🌐", title: "Cross-platform Sharing" },
+  { icon: "💾", title: "Version Control" },
 ];
 
 export default function FeatureMarquee() {
@@ -35,21 +37,22 @@ export default function FeatureMarquee() {
   });
 
   return (
-    <section className="border-t py-16 overflow-hidden">
+    <section className="border-t py-16 overflow-hidden bg-black/5">
       <p className="text-center text-base text-brand-white mb-6 mx-8">
         Designed to remove friction between your ideas and the final result.
       </p>
 
       <div
-        className="relative"
+        className="relative cursor-grab"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
         <motion.div
           ref={containerRef}
-          className="flex gap-4 w-max"
+          className="flex gap-6 w-max"
           style={{ x }}
         >
+          {/* Duplicate array for seamless looping */}
           {[...features, ...features].map((f, i) => (
             <FeatureCard key={i} {...f} />
           ))}

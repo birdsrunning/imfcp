@@ -34,6 +34,20 @@ export const user = pgTable("user", {
     .notNull(),
 });
 
+export const clientQuestions = pgTable("client_questions", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  category: text("category").notNull(),
+  message: text("message").notNull(),
+
+  reply: text("reply"),                 // your response
+  replied: boolean("replied").default(false),
+
+  createdAt: timestamp("created_at").defaultNow(),
+  repliedAt: timestamp("replied_at"),
+});
+
 export const session = pgTable(
   "session",
   {

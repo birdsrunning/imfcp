@@ -1,6 +1,18 @@
+"use client";
 import React from "react";
+import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+
+const floatingTags = [
+  { text: "Prompt-Ready", className: "top-10 left-12 bg-[#ff6a3d]" },
+  { text: "Commercial-Use", className: "top-32 right-16 bg-[#ff9a5c]" },
+  { text: "High-Res", className: "bottom-16 left-24 bg-[#ffd6c9]" },
+  { text: "Unlimited Access", className: "bottom-28 right-12 bg-[#ff8a5c]" },
+  { text: "Curated Quality", className: "top-20 right-32 bg-[#ffb69c]" },
+];
 
 export default function CtaSection() {
+  const router = useRouter();
   return (
     <div className="relative rounded-2xl p-[1px] bg-gradient-to-br from-white/50 via-white/10 to-white/40 shadow-[0_0_40px_rgba(255,255,255,0.08)] max-w-7xl lg:mx-auto mx-6 my-12">
       <section
@@ -10,12 +22,29 @@ export default function CtaSection() {
           px-6 py-20 md:px-14 md:py-28
         "
       >
-        {/* Decorative layer (SVGs / floating tags live here) */}
-        <div className="pointer-events-none absolute inset-0 opacity-40">
-          {/* svg patterns / floating tags */}
+        {/* Floating pill tags using Framer Motion */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          {floatingTags.map((tag, i) => (
+            <motion.span
+              key={i}
+              className={`absolute ${tag.className} text-sm text-white px-4 py-1 rounded-full shadow-lg shadow-black/20`}
+              animate={{
+                y: [0, -6, 0], // subtle vertical float
+                rotate: [0, 1, 0], // tiny rotation
+              }}
+              transition={{
+                duration: 6 + 0.9 * 2, // slight variation in speed
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.5, // stagger start times
+              }}
+            >
+              {tag.text}
+            </motion.span>
+          ))}
         </div>
 
-        {/* Content */}
+        {/* Main content */}
         <div className="relative z-10 mx-auto max-w-3xl text-center flex flex-col items-center gap-8">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white">
             AI Images, Done Once—For Everything You’ll Ever Build.
@@ -29,18 +58,22 @@ export default function CtaSection() {
 
           {/* CTA */}
           <div className="flex flex-col items-center gap-4 mt-4">
-            <button className="
+            <button
+              onClick={() => {
+                router.push("/dashboard");
+              }}
+              className="
               rounded-full bg-white px-8 py-4 text-base font-medium text-[#140b0a]
               shadow-lg shadow-black/10
               transition-all duration-300
               hover:scale-[1.03]
               hover:shadow-xl
               active:scale-[0.98]
-            ">
+            "
+            >
               Get Lifetime Access
             </button>
 
-            {/* Micro reassurance */}
             <span className="text-sm text-white/70">
               One-time purchase • Unlimited use • No subscriptions
             </span>

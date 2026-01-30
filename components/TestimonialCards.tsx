@@ -2,6 +2,7 @@
 import React, { useRef, useState } from "react";
 import { motion, useMotionValue, useAnimationFrame } from "framer-motion";
 import TestimonialCard from "./TestimonialCard";
+import { testimonials } from "@/data/data";
 
 export default function TestimonialCards() {
   const y = useMotionValue(0);
@@ -33,22 +34,26 @@ export default function TestimonialCards() {
       <motion.div ref={wrapperRef} style={{ y }}>
         {/* GRID A */}
         <div className="grid sm:grid-cols-3 grid-cols-1 gap-6 max-w-7xl mx-auto">
-          <TestimonialCard />
-          <TestimonialCard />
-          <TestimonialCard />
-          <TestimonialCard />
-          <TestimonialCard />
-          <TestimonialCard />
+          {testimonials.map((testimonial) => (
+            <TestimonialCard
+              key={testimonial.id}
+              name={testimonial.name}
+              role={testimonial.role}
+              comment={testimonial.comment}
+            />
+          ))}
         </div>
 
         {/* GRID A (CLONE) */}
         <div className="grid sm:grid-cols-3 grid-cols-1 gap-6 max-w-7xl mx-auto mt-6">
-          <TestimonialCard />
-          <TestimonialCard />
-          <TestimonialCard />
-          <TestimonialCard />
-          <TestimonialCard />
-          <TestimonialCard />
+          {testimonials.map((testimonial) => (
+            <TestimonialCard
+              key={testimonial.id}
+              name={testimonial.name}
+              role={testimonial.role}
+              comment={testimonial.comment}
+            />
+          ))}
         </div>
       </motion.div>
     </div>

@@ -1,7 +1,13 @@
 "use client";
 
 import React from "react";
-import { Upload, ShieldCheck, DollarSign, ImageUpscale } from "lucide-react";
+import {
+  Upload,
+  ShieldCheck,
+  DollarSign,
+  ImageUpscale,
+  MessageCircle,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import {
@@ -41,6 +47,12 @@ export default function SesameSeed() {
       action: () => router.push("/sesame-seed/upload"),
       primary: true,
     },
+    {
+      icon: MessageCircle,
+      title: "Messages / Questions",
+      description: "View and respond to client questions and support requests.",
+      action: () => router.push("/sesame-seed/questions"),
+    },
   ];
 
   return (
@@ -53,8 +65,8 @@ export default function SesameSeed() {
       {/* Desktop grid */}
       <TooltipProvider delayDuration={150}>
         <div
-          className="hidden md:grid grid-cols-2 grid-rows-2 gap-6 p-8 rounded-3xl 
-          bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl"
+          className="hidden md:grid grid-cols-2 auto-rows-auto gap-6 p-8 rounded-3xl
+            bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl"
         >
           {items.map((item, index) => {
             const Icon = item.icon;
@@ -90,9 +102,7 @@ export default function SesameSeed() {
                     border border-white/10 text-white shadow-xl"
                 >
                   <p className="font-medium text-sm">{item.title}</p>
-                  <p className="text-xs text-white/70 mt-1">
-                    {item.description}
-                  </p>
+                  <p className="text-xs text-white/70 mt-1">{item.description}</p>
                 </TooltipContent>
               </Tooltip>
             );

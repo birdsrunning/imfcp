@@ -70,6 +70,15 @@ export const EditFormSchema = z.object({
 
 export type EditFormType = z.infer<typeof EditFormSchema>;
 
+export const SpecialQuestionSchema = z.object({
+  name: z.string().min(2),
+  email: z.string().email(),
+  message: z.string().min(10),
+});
+
+export type SpecialQuestionType = z.infer<typeof SpecialQuestionSchema>;
+
+
 
 // export const ImageBaseFields = {
 //   title: z.string().min(1, "Title is required"),
