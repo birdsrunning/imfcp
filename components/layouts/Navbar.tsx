@@ -1,5 +1,4 @@
 import React from "react";
-import GetAccess from "../get-access";
 import { navLinks } from "@/data/data";
 import Link from "next/link";
 import { Menu } from "lucide-react";
@@ -42,7 +41,6 @@ export default function Navbar() {
         {/* Right */}
         <div className="flex items-center gap-6">
           <Login href="/dashboard" />
-          <GetAccess href="/dashboard" />
         </div>
       </nav>
 

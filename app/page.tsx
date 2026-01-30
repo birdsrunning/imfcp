@@ -4,7 +4,7 @@ import FeatureMarquee from "@/components/layouts/MarqueeSection";
 import PersonaSection from "@/components/PersonaSection";
 import Testimonials from "@/components/layouts/Testimonials";
 import FaqSection from "@/components/layouts/FaqSection";
-import Footer from "@/components/layouts/Footer";
+import Footer from "@/components/Footer/Footer";
 import CtaSection from "@/components/layouts/cta";
 import Pricing from "@/components/layouts/Pricing";
 export default function Page() {

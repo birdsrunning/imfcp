@@ -6,7 +6,10 @@ import { Button } from "../ui/button";
 
 export default function Pricing() {
   return (
-    <section className="min-h-screen flex items-center justify-center px-6">
+    <section
+      id="pricing"
+      className="min-h-screen flex items-center justify-center px-6"
+    >
       <div className="flex flex-col md:flex-row gap-4 max-w-5xl items-center">
         {/* ================= Freemium ================= */}
         <div

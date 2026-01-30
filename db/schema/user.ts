@@ -21,7 +21,6 @@ export const notificationTypeEnum = pgEnum("notification_type", [
   "error",
 ]);
 
-
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
@@ -192,6 +191,21 @@ export const notifications = pgTable(
   ],
 );
 
+export const newsletterSubscribers = pgTable(
+  "newsletter_subscribers",
+  {
+    id: text("id").primaryKey(),
+    email: text("email").notNull().unique(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => [index("newsletter_email_idx").on(table.email)],
+);
+
+export const rateLimits = pgTable("rate_limits", {
+  key: text("key").primaryKey(), // IP or IP+action
+  count: text("count").notNull(),
+  expiresAt: timestamp("expires_at").notNull(),
+});
 
 // Relation from image → user
 export const userImageRelations = relations(images, ({ one }) => ({

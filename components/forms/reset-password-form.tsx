@@ -58,6 +58,7 @@ export default function ResetPasswordForm() {
       }
 
       toast.success("Password reset successfully");
+      
       router.push("/auth?reset=success");
     } catch (err) {
       setError("Something went wrong");
