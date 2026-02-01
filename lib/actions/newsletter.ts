@@ -14,6 +14,7 @@ export async function subscribeNewsletter(formData: FormData) {
   }
 
   const email = formData.get("email") as string;
+  console.log(formData.get("email") as string)
   if (!email) {
     return { success: false, message: "Email required" };
   }

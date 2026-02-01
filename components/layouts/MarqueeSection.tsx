@@ -37,7 +37,7 @@ export default function FeatureMarquee() {
   });
 
   return (
-    <section className="border-t py-16 overflow-hidden bg-black/5">
+    <section className="border-t py-16 overflow-hidden bg-brand-black/5">
       <p className="text-center text-base text-brand-white mb-6 mx-8">
         Designed to remove friction between your ideas and the final result.
       </p>

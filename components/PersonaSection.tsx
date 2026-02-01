@@ -1,73 +1,91 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import PersonaCard from "./PersonaCard";
 import { personas } from "@/data/data";
-import { AnimatePresence, motion } from "framer-motion";
 
-// utils/random.ts
-export function getRandomItemsNoRepeat<T>(
+/* ---------------- Utils ---------------- */
+function getRandomItemsNoRepeat<T>(
   array: T[],
   count: number,
   previous: T[] = []
 ): T[] {
-  const available = array.filter((item) => !previous.includes(item));
+  const available =
+    previous.length === 0
+      ? array
+      : array.filter((item) => !previous.includes(item));
+
   const shuffled = [...available].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 }
 
+/* --------------- Component -------------- */
 export default function PersonaSection() {
-  const [selectedPersonas, setSelectedPersonas] = useState(() =>
-    getRandomItemsNoRepeat(personas, 3)
+  // Deterministic initial render (SSR-safe)
+  const [current, setCurrent] = useState<typeof personas>(
+    personas.slice(0, 3)
   );
-  const [previousPersonas, setPreviousPersonas] = useState(selectedPersonas);
+
+  // Keep previous value WITHOUT triggering re-renders
+  const previousRef = useRef<typeof personas>(current);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const next = getRandomItemsNoRepeat(personas, 3, previousPersonas);
-      setSelectedPersonas(next);
-      setPreviousPersonas(next);
-    }, 5000); // rotate every 2.5s
+      const next = getRandomItemsNoRepeat(
+        personas,
+        3,
+        previousRef.current
+      );
+
+      previousRef.current = next;
+      setCurrent(next);
+    }, 5000);
 
     return () => clearInterval(interval);
-  }, [previousPersonas]);
+  }, []);
 
   return (
     <section className="py-6 flex flex-col gap-8">
+      {/* Header */}
       <div className="md:max-w-4xl max-w-2xl mx-auto p-6">
         <h2 className="font-bold underline">Who this is for?</h2>
 
-        <p className="lead text-2xl leading-[200%]">
-          <span>We believe in a creator-first approach to visual resources,</span>{" "}
-          using carefully curated images{" "}
+        <p className="text-2xl leading-[200%]">
+          We believe in a creator-first approach to visual resources,
           <span className="font-light opacity-70">
-            Together, we can build better creative work today and shape the visuals of tomorrow.
+            {" "}
+            together shaping the visuals of tomorrow.
           </span>
         </p>
       </div>
 
-      {/* Persona cards */}
-      <div className="relative w-full grid sm:grid-cols-3 grid-cols-1 items-center gap-4 px-6">
-        {/* AnimatePresence with mode="wait" ensures exit completes before enter */}
-        <AnimatePresence mode="wait">
-          {selectedPersonas.map((persona, index) => (
+      {/* Cards */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={current.map((p) => p.title).join("-")}
+          className="grid sm:grid-cols-3 grid-cols-1 gap-4 px-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.35, ease: "easeInOut" }}
+        >
+          {current.map((persona, index) => (
             <motion.div
-              key={persona.title} // unique key
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              key={persona.title}
+              initial={{ opacity: 0, y: 28, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.12,
+                ease: "easeOut",
+              }}
             >
-              <PersonaCard
-                title={persona.title}
-                description={persona.description}
-                icon={persona.icon}
-                image={persona.image}
-              />
+              <PersonaCard {...persona} />
             </motion.div>
           ))}
-        </AnimatePresence>
-      </div>
+        </motion.div>
+      </AnimatePresence>
     </section>
   );
 }

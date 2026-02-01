@@ -13,7 +13,7 @@ export default function Navbar() {
         hidden md:flex items-center justify-between
         min-h-2h-16 px-8 lg:px-16
         backdrop-blur-md bg-brand-black/20
-        text-sm lg:text-base
+        text-xs lg:text-base font-bold
       "
       >
         {/* Left */}

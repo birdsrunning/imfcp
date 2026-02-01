@@ -85,42 +85,49 @@ export const testimonials = [
     id: 1,
     name: "Alex Morgan",
     role: "Creative Director",
-    comment: "“This product completely changed how we approach design. Everything feels intentional, clean, and thoughtfully crafted.”",
+    comment:
+      "“This product completely changed how we approach design. Everything feels intentional, clean, and thoughtfully crafted.”",
   },
   {
     id: 2,
     name: "Sofia Alvarez",
     role: "Brand Strategist",
-    comment: "“The experience is smooth from start to finish. It helped us communicate our brand more clearly and confidently.”",
+    comment:
+      "“The experience is smooth from start to finish. It helped us communicate our brand more clearly and confidently.”",
   },
   {
     id: 3,
     name: "Daniel Kim",
     role: "Product Designer",
-    comment: "“I’ve used a lot of tools, but this one stands out. It balances aesthetics and usability perfectly.”",
+    comment:
+      "“I’ve used a lot of tools, but this one stands out. It balances aesthetics and usability perfectly.”",
   },
   {
     id: 4,
     name: "Maya Thompson",
     role: "UX Researcher",
-    comment: "“The attention to detail is impressive. It feels like it was designed by people who truly understand users.”",
+    comment:
+      "“The attention to detail is impressive. It feels like it was designed by people who truly understand users.”",
   },
   {
     id: 5,
     name: "Jordan Patel",
     role: "Frontend Engineer",
-    comment: "“Integration was seamless and fast. It fits right into our workflow without adding complexity.”",
+    comment:
+      "“Integration was seamless and fast. It fits right into our workflow without adding complexity.”",
   },
   {
     id: 6,
     name: "Liam O’Connor",
     role: "Startup Founder",
-    comment: "“This saved us weeks of work. We launched faster and with more confidence in the final result.”",
+    comment:
+      "“This saved us weeks of work. We launched faster and with more confidence in the final result.”",
   },
   {
     id: 7,
     name: "Aisha Bello",
     role: "Creative Technologist",
-    comment: "“It’s rare to find something that looks this good and works this well. Our clients noticed immediately.”",
+    comment:
+      "“It’s rare to find something that looks this good and works this well. Our clients noticed immediately.”",
   },
 ];

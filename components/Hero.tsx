@@ -2,18 +2,21 @@ import React from "react";
 import GetAccess from "./get-access";
 import LightRays from "./LightRays";
 
-const floatingImages = [
+const floatingTags = [
   {
-    src: "/images/korty_eo.jpg",
-    className: "top-16 left-16 w-16 rotate-[-6deg]",
+    text: "Prompt-engineered",
+    className:
+      "top-16 left-16 bg-brand-orange/10 text-brand-orange border-brand-orange/30",
   },
   {
-    src: "/images/korty_eo.jpg",
-    className: "top-56 right-24 w-20 rotate-[4deg]",
+    text: "Cinematic",
+    className:
+      "top-48 right-24 bg-brand-orange/10 text-blue-400 border-blue-400/30",
   },
   {
-    src: "/images/korty_eo.jpg",
-    className: "bottom-40 left-32 w-14 rotate-[-2deg]",
+    text: "Commercial-ready",
+    className:
+      "bottom-40 left-32 bg-brand-orange/20 text-emerald-400 border-emerald-400/30",
   },
 ];
 
@@ -28,7 +31,7 @@ export default function Hero() {
           raysSpeed={1.5}
           lightSpread={0.9}
           rayLength={2.0}
-          followMouse={true}
+          followMouse
           mouseInfluence={0.08}
           noiseAmount={0.08}
           distortion={0.04}
@@ -36,51 +39,33 @@ export default function Hero() {
         />
       </div>
 
-      {/* Dark contrast overlay */}
-      {/* <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/60 via-black/40 to-black/80" /> */}
-
-      {/* Floating word tags */}
-      <div className="absolute inset-0 z-[2] pointer-events-none">
-        <span className="absolute top-14 left-16 text-sm text-brand-white/50">
-          Prompt-engineered
-        </span>
-        <span className="absolute top-48 right-24 text-sm text-brand-white/40">
-          Cinematic
-        </span>
-        <span className="absolute bottom-40 left-32 text-sm text-brand-white/45">
-          Commercial-ready
-        </span>
-      </div>
-
-      {/* Floating image accents */}
-      <div className="absolute inset-0 z-[2] pointer-events-none">
-        {floatingImages.map((img, i) => (
-          <div
-            style={{ animationDelay: `${i * 2}s` }}
+      {/* Floating text pills */}
+      <div className="hidden sm:block absolute inset-0 z-[2] pointer-events-none">
+        {floatingTags.map((tag, i) => (
+          <span
             key={i}
-            className={`absolute ${img.className} animate-float`}
+            style={{ animationDelay: `${i * 2}s` }}
+            className={`
+              absolute ${tag.className}
+              px-4 py-1.5 text-sm
+              rounded-full
+              backdrop-blur-md
+              border
+              shadow-lg
+              animate-float
+            `}
           >
-            <img
-              src={img.src}
-              alt=""
-              className="
-          rounded-xl
-          opacity-70
-          shadow-xl
-          backdrop-blur-sm
-          border border-white/10
-        "
-            />
-          </div>
+            {tag.text}
+          </span>
         ))}
       </div>
 
       {/* Main content */}
       <div className="relative z-[3] mx-auto max-w-7xl px-6 pt-16 grid gap-4">
         <div className="max-w-2xl mx-auto flex flex-col gap-6 text-center">
-          <h1 className="text-3xl md:text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-6xl font-semibold leading-tight">
             Beautiful AI-Generated Images,
-            <br className="" />
+            <br />
             Made for Creatives
           </h1>
 
@@ -92,7 +77,7 @@ export default function Hero() {
           <GetAccess href="/dashboard" />
         </div>
 
-        {/* Product dashboard */}
+        {/* Product dashboard placeholder */}
         <div className="relative z-[4] flex justify-center">
           <div className="w-full max-w-6xl translate-y-8">
             <div className="rounded-2xl shadow-2xl bg-brand-white/95 backdrop-blur-sm p-4">
