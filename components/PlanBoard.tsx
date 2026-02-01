@@ -5,9 +5,9 @@ import ProgressBar from "./ProgressBar";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 
-type PlanType = "free" | "paid" | undefined;
+type PaymentStatusType = "free" | "paid" | undefined;
 
-export default function PlanBoard({ plan }: { plan: PlanType }) {
+export default function PlanBoard({ plan }: { plan: PaymentStatusType }) {
   const isFree = !plan || plan === "free";
 
   // intentionally aspirational

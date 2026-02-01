@@ -45,13 +45,11 @@ export async function finalizePayment(
       .values({
         userId,
         paymentStatus: "paid",
-        plan: "pro",
       })
       .onConflictDoUpdate({
         target: userProfile.userId,
         set: {
           paymentStatus: "paid",
-          plan: "pro",
         },
       });
 
