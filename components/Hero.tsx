@@ -22,7 +22,7 @@ const floatingTags = [
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[calc(90vh-64px)] overflow-hidden text-brand-white">
+    <section className="relative w-full min-h-[calc(90vh-64px)] overflow-hidden text-brand-white">
       {/* Light rays background */}
       <div className="absolute inset-0 z-0">
         <LightRays

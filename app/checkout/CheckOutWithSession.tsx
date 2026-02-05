@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Loader2, Lock } from "lucide-react";
+import {
+  Loader2,
+  Lock,
+  Check,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Session } from "@/types/types";
@@ -12,6 +18,12 @@ const PRODUCT = {
   name: "Pro Access",
   price: 10000,
   description: "One-time payment. Lifetime access.",
+  highlights: [
+    "Lifetime access — no subscriptions",
+    "All future features included",
+    "Priority updates & improvements",
+    "Secure Paystack checkout",
+  ],
 };
 
 export default function CheckoutPageWithSession({
@@ -31,107 +43,157 @@ export default function CheckoutPageWithSession({
       setError("");
 
       if (!publicKey) {
-        toast.error("Something went wrong: missing Paystack key");
+        toast.error("Missing Paystack public key");
         setLoading(false);
         return;
       }
 
-      // ✅ Dynamic import (browser-only)
       const PaystackPop = (await import("@paystack/inline-js")).default;
       const paystack = new PaystackPop();
 
       paystack.newTransaction({
         key: publicKey,
         email: session.user.email,
-        amount: PRODUCT.price * 100, // kobo
+        amount: PRODUCT.price * 100,
         reference,
         onSuccess: async () => {
-          toast.success("Payment completed! Verifying...");
+          toast.success("Payment completed! Verifying…");
 
           try {
-            const result = await verifyPayment(reference); // fallback verification
-            if (result.success) {
-              toast.success(result.message);
-            } else {
-              toast.error(result.message || "Payment verification failed");
+            const result = await verifyPayment(reference);
+            if (!result.success) {
+              toast.error(result.message || "Verification failed");
             }
-          } catch (err) {
-            console.error("VERIFY_PAYMENT_ERROR", err);
+          } catch {
             toast.error("Payment verification failed");
           } finally {
             setLoading(false);
-            redirect("/dashboard"); // redirect after fallback
+            redirect("/dashboard");
           }
         },
         onCancel: () => {
-          toast.error("Transaction cancelled");
-          setError("Payment could not be initialized. Try again.");
+          setError("Payment was cancelled.");
           setLoading(false);
         },
       });
     } catch (err) {
-      console.error("PAYSTACK_INIT_ERROR", err);
-      setError("Payment could not be initialized. Try again.");
+      console.error(err);
+      setError("Payment could not be initialized.");
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-brand-black flex items-center justify-center px-4">
-      <div className="w-full max-w-md rounded-2xl bg-brand-white p-6 space-y-6">
-        {/* Header */}
-        <div className="space-y-1">
-          <h1 className="text-2xl font-bold text-brand-black">
-            {PRODUCT.name}
-          </h1>
-          <p className="text-sm text-brand-black/70">{PRODUCT.description}</p>
+    <div className="min-h-screen bg-gradient-to-br from-[#0b0a0b] to-[#151314] flex items-center justify-center px-6">
+      <div
+        className="
+          w-full max-w-5xl grid md:grid-cols-2 gap-10
+          rounded-3xl border border-white/10
+          bg-white/5 backdrop-blur-xl
+          shadow-[0_40px_120px_rgba(0,0,0,0.6)]
+          p-10
+        "
+      >
+        {/* ================= LEFT: PRODUCT ================= */}
+        <div className="flex flex-col justify-between">
+          <div className="space-y-6">
+            <div className="inline-flex items-center gap-2 text-brand-orange text-sm font-medium">
+              <Sparkles className="h-4 w-4" />
+              Upgrade your account
+            </div>
+
+            <h1 className="text-4xl font-bold text-white">
+              {PRODUCT.name}
+            </h1>
+
+            <p className="text-white/70 max-w-md">
+              {PRODUCT.description}
+            </p>
+
+            <ul className="space-y-3 pt-4">
+              {PRODUCT.highlights.map((item, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-3 text-white/80"
+                >
+                  <Check className="h-5 w-5 text-brand-orange shrink-0 mt-0.5" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Trust badges */}
+          <div className="mt-10 flex items-center gap-4 text-xs text-white/60">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-brand-orange" />
+              Secure payment
+            </div>
+            <div className="flex items-center gap-2">
+              <Lock className="h-4 w-4 text-brand-orange" />
+              Encrypted checkout
+            </div>
+          </div>
         </div>
 
-        {/* Price */}
-        <div className="flex items-end gap-2">
-          <span className="text-4xl font-extrabold text-brand-black">
-            ₦{PRODUCT.price.toLocaleString()}
-          </span>
-          <span className="text-sm text-brand-black/70">one-time</span>
-        </div>
-
-        {/* Benefits */}
-        <ul className="text-sm text-brand-black/80 space-y-2">
-          <li>• Lifetime access</li>
-          <li>• All future updates included</li>
-          <li>• Secure Paystack checkout</li>
-        </ul>
-
-        {/* Error */}
-        {error && (
-          <p className="text-sm text-brand-orange font-medium">{error}</p>
-        )}
-
-        {/* CTA */}
-        <Button
-          onClick={handlePayment}
-          disabled={loading}
+        {/* ================= RIGHT: CHECKOUT ================= */}
+        <div
           className="
-            w-full h-12 text-base font-semibold
-            bg-brand-orange text-brand-white
-            hover:bg-brand-orange/90
-            disabled:opacity-70
+            rounded-2xl bg-black/40 border border-white/10
+            p-8 flex flex-col justify-between
           "
         >
-          {loading ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Redirecting…
-            </>
-          ) : (
-            `Pay ₦${PRODUCT.price.toLocaleString()}`
-          )}
-        </Button>
+          <div className="space-y-6">
+            <div>
+              <p className="text-sm text-white/60">Total</p>
+              <div className="flex items-end gap-2">
+                <span className="text-5xl font-extrabold text-white">
+                  ₦{PRODUCT.price.toLocaleString()}
+                </span>
+                <span className="text-sm text-white/50 mb-2">
+                  one-time
+                </span>
+              </div>
+            </div>
 
-        {/* Trust */}
-        <div className="flex items-center justify-center gap-2 text-xs text-brand-black/70">
-          <Lock className="h-3 w-3 text-brand-orange" />
-          Secured by Paystack
+            <div className="rounded-xl bg-white/5 border border-white/10 p-4 text-sm text-white/70">
+              You’ll get immediate access after payment.
+              No recurring charges.
+            </div>
+
+            {error && (
+              <p className="text-sm text-brand-orange font-medium">
+                {error}
+              </p>
+            )}
+          </div>
+
+          <div className="space-y-4 mt-8">
+            <Button
+              onClick={handlePayment}
+              disabled={loading}
+              className="
+                h-14 text-lg font-semibold
+                bg-brand-orange text-black
+                hover:bg-brand-orange/90
+                shadow-[0_0_40px_rgba(255,140,0,0.35)]
+                disabled:opacity-70
+              "
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  Processing…
+                </>
+              ) : (
+                `Unlock Pro Access`
+              )}
+            </Button>
+
+            <p className="text-xs text-center text-white/50">
+              Secured by Paystack · Cards & bank transfer supported
+            </p>
+          </div>
         </div>
       </div>
     </div>

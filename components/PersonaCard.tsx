@@ -21,6 +21,7 @@ export default function PersonaCard({
         fill
         src={image}
         alt={title}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="object-cover opacity-10 group-hover:opacity-90 transition-all duration-300"
       />
 

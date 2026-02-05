@@ -33,7 +33,6 @@ const extMap: Record<string, string> = {
 
 export async function uploadImage(unSafeData: UploadFormType) {
   const session = await auth.api.getSession({ headers: await headers() });
-  console.log(session);
   if (!session) {
     return { success: false, data: null, message: "Unauthorized" };
   }
@@ -162,8 +161,6 @@ export async function uploadImage(unSafeData: UploadFormType) {
       };
     }
   } catch (err) {
-    console.error("Upload failed:", err);
-
     await Promise.allSettled([
       // DB cleanup (safe even if row doesn't exist)
       db.delete(images).where(eq(images.id, uniqueId)),

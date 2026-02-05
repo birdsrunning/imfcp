@@ -31,7 +31,7 @@ export default function FaqSection() {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   return (
-    <section className="bg-brand-orange relative rounded-2xl px-6 py-12 md:px-10 md:py-16">
+    <section id="faq" className="w-full bg-brand-orange relative rounded-2xl px-6 py-12 md:px-10 md:py-16">
       <div className="relative z-10 mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-10">
         {/* Left content */}
         <div className="flex flex-col justify-center">

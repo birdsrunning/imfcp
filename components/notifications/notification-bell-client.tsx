@@ -89,7 +89,7 @@ export default function NotificationBellClient({
 
       {/* Dropdown */}
       {open && (
-        <div className="absolute right-0 z-50 mt-2 w-96 overflow-hidden rounded-2xl border bg-background shadow-xl">
+        <div className="absolute right-0 z-50 mt-2 w-72 overflow-hidden rounded-2xl border bg-background shadow-xl">
           <div className="border-b px-4 py-3 font-semibold">Notifications</div>
 
           <div className="max-h-96 overflow-y-auto">

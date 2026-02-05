@@ -14,7 +14,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="absolute right-0 top-0 h-full underline text-brand-black font-semibold disabled:opacity-50"
+      className="absolute right-0 top-0 h-full underline text-brand-black font-semibold disabled:opacity-50 hover:text-brand-orange"
     >
       {pending ? "Saving..." : "Sign up?"}
     </button>

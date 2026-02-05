@@ -6,6 +6,7 @@ import { Toaster } from "sonner";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { DashboardSearch } from "@/components/dashboard-search";
 
 export default async function Layout({
   children,
@@ -22,8 +23,14 @@ export default async function Layout({
 
       <div className="relative min-h-screen w-full bg-brand-black">
         <AppNavbar />
-        <main className="relative pt-4">
-          <SidebarTrigger className="absolute top-2 left-1 z-20" />
+        <main className="relative">
+          <div className="relative flex justify-center">
+            <SidebarTrigger className="absolute top-2 left-1 z-20" />
+            <div className="block sm:hidden">
+              <DashboardSearch />
+            </div>
+          </div>
+
           {children}
         </main>
         <Toaster />

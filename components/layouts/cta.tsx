@@ -14,7 +14,7 @@ const floatingTags = [
 export default function CtaSection() {
   const router = useRouter();
   return (
-    <div className="relative rounded-2xl p-[1px] bg-gradient-to-br from-white/50 via-white/10 to-white/40 shadow-[0_0_40px_rgba(255,255,255,0.08)] max-w-7xl lg:mx-auto mx-6 my-12">
+    <div className="relative rounded-2xl p-[1px] bg-gradient-to-br from-white/50 via-white/10 to-white/40 shadow-[0_0_40px_rgba(255,255,255,0.08)] w-full max-w-7xl mx-6 my-12">
       <section
         className="
           relative h-fit rounded-2xl overflow-hidden

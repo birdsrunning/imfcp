@@ -28,7 +28,9 @@ export default function AppNavbar() {
       </div>
 
       {/* center: search */}
-      <DashboardSearch />
+      <div className="hidden sm:block">
+        <DashboardSearch />
+      </div>
 
       {/* right: actions */}
       <div className="flex items-center gap-3">

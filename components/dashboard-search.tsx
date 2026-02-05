@@ -46,8 +46,6 @@ export function DashboardSearch() {
     w-full
     max-w-xs
     md:max-w-64
-    hidden
-    sm:block
   "
     >
       {/* glass border */}

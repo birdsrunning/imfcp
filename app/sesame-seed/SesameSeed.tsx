@@ -7,6 +7,7 @@ import {
   DollarSign,
   ImageUpscale,
   MessageCircle,
+  Mail,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -53,6 +54,12 @@ export default function SesameSeed() {
       description: "View and respond to client questions and support requests.",
       action: () => router.push("/sesame-seed/questions"),
     },
+    {
+      icon: Mail,
+      title: "Newsletter",
+      description: "View newsletter subscribers and growth metrics.",
+      action: () => router.push("/sesame-seed/newsletter"),
+    },
   ];
 
   return (
@@ -65,7 +72,7 @@ export default function SesameSeed() {
       {/* Desktop grid */}
       <TooltipProvider delayDuration={150}>
         <div
-          className="hidden md:grid grid-cols-2 auto-rows-auto gap-6 p-8 rounded-3xl
+          className="hidden md:grid grid-rows-2 grid-flow-col gap-6 p-8 rounded-3xl
             bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl"
         >
           {items.map((item, index) => {
@@ -102,7 +109,9 @@ export default function SesameSeed() {
                     border border-white/10 text-white shadow-xl"
                 >
                   <p className="font-medium text-sm">{item.title}</p>
-                  <p className="text-xs text-white/70 mt-1">{item.description}</p>
+                  <p className="text-xs text-white/70 mt-1">
+                    {item.description}
+                  </p>
                 </TooltipContent>
               </Tooltip>
             );
