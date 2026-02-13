@@ -66,7 +66,7 @@ export default function SesameSeed() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#1f1c1d] to-[#151314]">
       {/* Mobile notice */}
       <div className="md:hidden text-sm text-white/60">
-        This screen is accessible on desktop and above
+        This screen is only accessible on desktop and above
       </div>
 
       {/* Desktop grid */}

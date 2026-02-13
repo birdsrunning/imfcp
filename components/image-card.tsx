@@ -7,6 +7,7 @@ import type { ImageCardProps } from "@/types/types";
 import { deleteImage } from "@/lib/actions/delete-handler";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { getDownloadUrl } from "@/lib/actions/download-handler";
 
 export function ImageCard({
   image,
@@ -16,6 +17,14 @@ export function ImageCard({
   isPaid: boolean;
 }) {
   const router = useRouter();
+
+  async function handleDownload(imageId: string) {
+    const res = await getDownloadUrl(imageId);
+
+    if (!res.success || !res.url) return;
+
+    window.location.href = res.url;
+  }
 
   return (
     <article className="flex flex-col gap-3">
@@ -71,10 +80,11 @@ export function ImageCard({
         >
           {/* Download (everyone) */}
           <button
+            onClick={() => handleDownload(image.id)}
             className="
-              rounded-full bg-black/70 p-2
-              text-white backdrop-blur
-              transition hover:bg-black
+               bg-brand-orange/70 p-4 rounded-2xl
+              text-brand-white backdrop-blur
+              transition hover:bg-brand-orange
             "
             aria-label="Download image"
           >
@@ -87,7 +97,7 @@ export function ImageCard({
               <Link
                 href={`/sesame-seed/edit/${image.id}`}
                 className="
-                  rounded-full bg-black/70 p-2
+                  bg-brand-orange/70 p-4 rounded-2xl
                   text-white backdrop-blur
                   transition hover:bg-black
                 "
@@ -108,7 +118,7 @@ export function ImageCard({
                   }
                 }}
                 className="
-                  rounded-full bg-black/70 p-2
+                  rounded-2xl bg-black/70 p-4
                   text-red-400 backdrop-blur
                   transition hover:bg-black
                 "

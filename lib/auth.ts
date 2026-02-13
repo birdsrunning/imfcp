@@ -14,10 +14,10 @@ const options = {
     provider: "pg",
     schema, // <-- REQUIRED
   }),
+
   emailAndPassword: {
     enabled: true,
     sendResetPassword: async ({ user, url }) => {
-    
       await resend.emails.send({
         from: `${process.env.EMAIL_SENDER_NAME} <${process.env.EMAIL_SENDER_ADDRESS}>`,
         to: user.email,
@@ -28,6 +28,13 @@ const options = {
           userEmail: user.email,
         }),
       });
+    },
+  },
+
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     },
   },
   plugins: [nextCookies()],

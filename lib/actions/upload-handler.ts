@@ -160,7 +160,7 @@ export async function uploadImage(unSafeData: UploadFormType) {
         message: "Failed to update database",
       };
     }
-  } catch (err) {
+  } catch {
     await Promise.allSettled([
       // DB cleanup (safe even if row doesn't exist)
       db.delete(images).where(eq(images.id, uniqueId)),

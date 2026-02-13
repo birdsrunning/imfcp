@@ -22,7 +22,7 @@ const floatingTags = [
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-[calc(90vh-64px)] overflow-hidden text-brand-white">
+    <section className="relative w-full min-h-[calc(90vh-64px)] pt-16 overflow-hidden text-brand-white">
       {/* Light rays background */}
       <div className="absolute inset-0 z-0">
         <LightRays
@@ -48,7 +48,7 @@ export default function Hero() {
             className={`
               absolute ${tag.className}
               px-4 py-1.5 text-sm
-              rounded-full
+              rounded-2xl
               backdrop-blur-md
               border
               shadow-lg
@@ -74,7 +74,7 @@ export default function Hero() {
             properly prompted, and delivered in one simple package.
           </p>
 
-          <GetAccess href="/dashboard" />
+          <GetAccess href="/coming-soon" />
         </div>
 
         {/* Product dashboard placeholder */}

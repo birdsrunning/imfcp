@@ -63,10 +63,11 @@ export default function Nav({
     >
       <button
         onClick={onClosed}
-        className="absolute right-4 top-4 text-white"
+        className="absolute right-4 top-4 text-brand-white text-3xl"
         aria-label="Close navigation"
       >
-        <X size={32} />
+        {/* <X size={32} /> */}
+        Close
       </button>
 
       <Link href="/#features" onClick={onClosed}>

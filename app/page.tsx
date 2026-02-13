@@ -8,16 +8,17 @@ import Footer from "@/components/Footer/Footer";
 import CtaSection from "@/components/layouts/cta";
 import Pricing from "@/components/layouts/Pricing";
 import ShowcaseHorizontal from "@/components/Showcase/ShowcaseSection";
+import ScrollRevealSection from "@/components/RevealImage/ScrollRevealSection";
 
 export default function Page() {
   return (
-    <div className="min-h-screen relative pt-16 flex flex-col items-center gap-32">
+    <div className="min-h-screen relative flex flex-col items-center gap-16">
       <Navbar />
       <Hero />
       <FeatureMarquee />
-      <ShowcaseHorizontal />
+      {/* <ShowcaseHorizontal /> */}
+      <ScrollRevealSection />
       <PersonaSection />
-
       <FaqSection />
       <Testimonials />
       <Pricing />

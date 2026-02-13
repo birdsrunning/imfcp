@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import { navLinks } from "@/data/data";
 import Link from "next/link";
@@ -8,6 +9,7 @@ import Nav from "./hamburger";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+
   // Auto-close if screen exceeds mobile (>= 640px)
   useEffect(() => {
     const handleResize = () => {
@@ -17,19 +19,22 @@ export default function Navbar() {
     };
 
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
   return (
-    <header className="fixed top-0 left-0 w-full z-50 ">
-      {/* Desktop / Tablet */}
+    <header className="fixed md:top-8 top-4 md:left-1/2 md:-translate-x-1/2 w-3/4 z-50">
+      {/* ================= Desktop / Tablet ================= */}
       <nav
         className="
-        hidden md:flex items-center justify-between
-        min-h-2h-16 px-8 lg:px-16
-        backdrop-blur-md bg-brand-black/20
-        text-xs lg:text-base font-bold
-      "
+          hidden md:flex items-center justify-between
+          min-h-16 px-2
+          rounded-2xl
+          backdrop-blur-md
+          bg-brand-black/70
+          border border-white/10
+          text-sm font-bold
+        "
       >
         {/* Left */}
         <div className="flex items-center gap-12 p-2">
@@ -59,18 +64,19 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile */}
+      {/* ================= Mobile ================= */}
       <nav
         className="
-        md:hidden
-        mx-auto mt-3
-        h-fit max-w-[95%]
-        px-4
-        py-2
-        rounded-2xl
-        flex items-center justify-between
-        backdrop-blur-md bg-brand-black/80
-      "
+          md:hidden
+          mx-auto mt-3
+          max-w-[95%]
+          px-4 py-2
+          rounded-2xl
+          flex items-center justify-between
+          backdrop-blur-md
+          bg-brand-black/70
+          border border-white/10
+        "
       >
         <img
           src="/images/logo/logoOrange.svg"
@@ -79,18 +85,17 @@ export default function Navbar() {
         />
 
         <button
-          onClick={() => {
-            setIsOpen((prev) => !prev);
-          }}
+          onClick={() => setIsOpen((prev) => !prev)}
           className="
-          h-10 w-10 rounded-full
-          flex items-center justify-center
-          bg-brand-orange
-        "
+            h-10 w-10 rounded-full
+            flex items-center justify-center
+            bg-brand-orange
+          "
         >
           <Menu className="h-5 w-5 text-brand-white" />
         </button>
       </nav>
+
       <Nav isClicked={isOpen} onClosed={() => setIsOpen(false)} />
     </header>
   );

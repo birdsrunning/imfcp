@@ -48,6 +48,8 @@ export default async function DashboardPage(props: {
     orientation,
     page,
     limit: LIMIT,
+    isPaid,
+    isAdmin,
   });
 
   return (

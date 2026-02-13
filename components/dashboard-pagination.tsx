@@ -30,7 +30,7 @@ export function DashboardPagination({
   }
 
   return (
-    <div className="flex items-center justify-between gap-4 pt-6 px-2 mb-10">
+    <div className="absolute left-0 bottom-0 w-full flex items-center justify-between gap-4 pt-6 px-2 mb-10">
       <Button disabled={page <= 1} onClick={() => goToPage(page - 1)}>
         Previous
       </Button>

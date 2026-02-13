@@ -1,11 +1,18 @@
+"use client";
 import React from "react";
 import { Button } from "./ui/button";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function GetAccess({ href }: { href: string }) {
+  const router = useRouter();
   return (
-    <Link href={href}>
-      <Button className="rounded-full text-brand-white">Get Access</Button>
-    </Link>
+    <Button
+      onClick={() => {
+        router.push(href);
+      }}
+      className="rounded-2xl text-brand-white w-fit m-auto p-4"
+    >
+      Get Access
+    </Button>
   );
 }

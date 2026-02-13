@@ -39,9 +39,8 @@ export default function AuthClientPage() {
         : await signUp(email, password, name);
 
       if (result?.user) router.push("/dashboard");
-      else setError("Authentication failed");
     } catch (err) {
-      setError("Authentication error");
+      
       console.log(err instanceof Error ? err.message : "Authentication failed");
     } finally {
       setIsLoading(false);

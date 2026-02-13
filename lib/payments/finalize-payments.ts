@@ -14,7 +14,7 @@ type FinalizeResult =
   | { ok: false; error: string };
 
 export async function finalizePayment(
-  input: FinalizeInput
+  input: FinalizeInput,
 ): Promise<FinalizeResult> {
   const { reference, userId, amount, currency } = input;
 
@@ -26,7 +26,7 @@ export async function finalizePayment(
         id: crypto.randomUUID(),
         userId,
         reference,
-        amount: amount.toString(),
+        amount: (amount / 100).toString(),
         currency,
         provider: "paystack",
         status: "SUCCESS",

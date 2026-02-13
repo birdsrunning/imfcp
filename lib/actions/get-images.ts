@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { images } from "@/db/schema";
-import { sql, and, ilike, asc, count } from "drizzle-orm";
+import { sql, and, ilike, asc, count, eq } from "drizzle-orm";
 
 type Orientation = "landscape" | "portrait";
 
@@ -10,6 +10,10 @@ type GetImagesArgs = {
   orientation?: Orientation;
   limit?: number;
   page?: number;
+
+  // 🔑 new
+  isPaid?: boolean;
+  isAdmin?: boolean;
 };
 
 export async function getImages({
@@ -17,10 +21,17 @@ export async function getImages({
   q,
   limit = 10,
   page = 1,
+  isPaid = false,
+  isAdmin = false,
 }: GetImagesArgs) {
   try {
     const offset = (page - 1) * limit;
     const conditions = [];
+
+    // 🔒 ACCESS CONTROL (VERY IMPORTANT)
+    if (!isAdmin && !isPaid) {
+      conditions.push(eq(images.accessTier, "free"));
+    }
 
     // 🔹 categories (AND)
     if (categories.length > 0) {
@@ -28,11 +39,10 @@ export async function getImages({
 
       conditions.push(
         sql`${images.categories} @> ${sql.raw(
-          `ARRAY[${normalized.map((c) => `'${c}'`).join(",")}]::text[]`
-        )}`
+          `ARRAY[${normalized.map((c) => `'${c}'`).join(",")}]::text[]`,
+        )}`,
       );
     }
-
 
     // 🔹 text search
     if (q?.trim()) {
