@@ -26,7 +26,6 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { uploadImage } from "@/lib/actions/upload-handler";
 import { Loader } from "@/components/Loader";
 import { CATEGORIES } from "@/data/data";
 
@@ -51,9 +50,21 @@ export default function UploadClient() {
   async function onSubmit(data: UploadFormType) {
     try {
       setLoading(true);
-      const result = await uploadImage(data);
+      const formData = new FormData();
+      formData.append("title", data.title);
+      formData.append("description", data.description);
+      formData.append("accessTier", data.accessTier);
+      formData.append("categories", JSON.stringify(data.categories));
+      formData.append("image", data.image);
+
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await res.json();
+
       if (result.success) {
-        setLoading(false);
         toast.success(result.message);
         form.reset();
       } else {
