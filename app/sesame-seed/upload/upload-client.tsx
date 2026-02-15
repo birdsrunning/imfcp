@@ -28,6 +28,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Loader } from "@/components/Loader";
 import { CATEGORIES } from "@/data/data";
+import { processAndUploadImage } from "@/lib/client-helper/precess-and-upload";
 
 export default function UploadClient() {
   const [loading, setLoading] = useState(false);
@@ -50,16 +51,24 @@ export default function UploadClient() {
   async function onSubmit(data: UploadFormType) {
     try {
       setLoading(true);
-      const formData = new FormData();
-      formData.append("title", data.title);
-      formData.append("description", data.description);
-      formData.append("accessTier", data.accessTier);
-      formData.append("categories", JSON.stringify(data.categories));
-      formData.append("image", data.image);
 
+      // STEP 1: upload files directly to R2
+      const { originalKey, webpKey } = await processAndUploadImage(
+        data.image,
+      );
+
+      // STEP 2: send only metadata to backend
       const res = await fetch("/api/upload", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: data.title,
+          description: data.description,
+          accessTier: data.accessTier,
+          categories: data.categories,
+          originalKey,
+          webpKey,
+        }),
       });
 
       const result = await res.json();
@@ -70,8 +79,9 @@ export default function UploadClient() {
       } else {
         toast.error(result.message);
       }
-    } catch {
-      toast.error("Something went wrong!");
+    } catch (err) {
+      console.error(err);
+      toast.error("Upload failed");
     } finally {
       setLoading(false);
     }
