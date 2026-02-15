@@ -16,7 +16,6 @@ export async function processAndUploadImage(file: File) {
 
   // convert to webp
   const webpFile = await convertToWebP(file, 0.9);
-  console.log(webpFile)
 
   const resOriginal = await fetch("/api/get-upload-url", {
     method: "POST",
@@ -28,7 +27,6 @@ export async function processAndUploadImage(file: File) {
     }),
   });
   const { data } = await resOriginal.json();
-  console.log(data);
   const originalUrl = data.url;
 
   const resThumbnail = await fetch("/api/get-upload-url", {
